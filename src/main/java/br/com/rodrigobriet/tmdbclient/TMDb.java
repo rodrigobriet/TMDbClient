@@ -2,7 +2,8 @@ package br.com.rodrigobriet.tmdbclient;
 
 import br.com.rodrigobriet.tmdbclient.core.exceptions.InvalidParameterValue;
 import br.com.rodrigobriet.tmdbclient.core.requests.AsyncRequest;
-import br.com.rodrigobriet.tmdbclient.core.requests.RequestService;
+import br.com.rodrigobriet.tmdbclient.core.requests.interfaces.RequestService;
+import br.com.rodrigobriet.tmdbclient.resources.account.Account;
 import br.com.rodrigobriet.tmdbclient.resources.authentication.Authentication;
 import okhttp3.OkHttpClient;
 
@@ -24,5 +25,9 @@ public class TMDb {
 	
 	public Authentication getAuthentication() {
 		return new Authentication(apiKey, requestService);
+	}
+	
+	public Account getAccount() {
+		return new Account(apiKey, requestService);
 	}
 }

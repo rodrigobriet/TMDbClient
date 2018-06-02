@@ -1,4 +1,4 @@
-package br.com.rodrigobriet.tmdbclient.core.resources;
+package br.com.rodrigobriet.tmdbclient.core.resources.query;
 
 public class QueryField {
 

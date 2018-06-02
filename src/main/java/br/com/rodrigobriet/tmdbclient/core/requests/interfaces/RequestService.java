@@ -1,4 +1,4 @@
-package br.com.rodrigobriet.tmdbclient.core.requests;
+package br.com.rodrigobriet.tmdbclient.core.requests.interfaces;
 
 public interface RequestService {
 	

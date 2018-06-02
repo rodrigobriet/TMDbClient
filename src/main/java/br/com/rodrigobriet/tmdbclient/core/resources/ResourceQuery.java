@@ -4,16 +4,17 @@ import java.util.HashMap;
 
 import br.com.rodrigobriet.tmdbclient.core.exceptions.InvalidParameterValue;
 import br.com.rodrigobriet.tmdbclient.core.mapping.MappingService;
-import br.com.rodrigobriet.tmdbclient.core.requests.RequestService;
+import br.com.rodrigobriet.tmdbclient.core.requests.interfaces.RequestService;
+import br.com.rodrigobriet.tmdbclient.core.resources.query.QueryField;
 
 public class ResourceQuery<ModelT, QueryT extends QueryField> extends Resource<ModelT> {
 
 	protected HashMap<QueryT, String> queryString = new HashMap<>();
 	
-	public ResourceQuery(String path, String apiKey, RequestService requestService, MappingService<ModelT> mappingService) {
-		super(path, apiKey, requestService, mappingService);
+	public ResourceQuery(String path, String apiKey, RequestService requestService, MappingService<ModelT> mappingService, int ... pathValues) {
+		super(path, apiKey, requestService, mappingService, pathValues);
 	}
-	
+
 	public ResourceQuery<ModelT, QueryT> setQuery(QueryT field, String value) {
 		if(field == null || value == null)
 			throw new InvalidParameterValue("Field and Value can't be null");

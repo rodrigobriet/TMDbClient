@@ -2,7 +2,7 @@ package br.com.rodrigobriet.tmdbclient.resources.authentication.models;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Session {
+public class AuthenticationSession {
 
 	@SerializedName("success")
 	private boolean success;

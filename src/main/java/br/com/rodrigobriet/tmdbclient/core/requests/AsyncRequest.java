@@ -4,6 +4,8 @@ import java.io.IOException;
 
 import br.com.rodrigobriet.tmdbclient.core.exceptions.UnexpectedResponseContentType;
 import br.com.rodrigobriet.tmdbclient.core.models.Header;
+import br.com.rodrigobriet.tmdbclient.core.requests.interfaces.RequestMediator;
+import br.com.rodrigobriet.tmdbclient.core.requests.interfaces.RequestService;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.MediaType;

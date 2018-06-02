@@ -1,27 +1,32 @@
 package br.com.rodrigobriet.tmdbclient.core.resources;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
+import br.com.rodrigobriet.tmdbclient.core.exceptions.InvalidParameterValue;
 import br.com.rodrigobriet.tmdbclient.core.mapping.MappingService;
 import br.com.rodrigobriet.tmdbclient.core.models.Header;
-import br.com.rodrigobriet.tmdbclient.core.requests.RequestCallback;
-import br.com.rodrigobriet.tmdbclient.core.requests.RequestMediator;
-import br.com.rodrigobriet.tmdbclient.core.requests.RequestService;
+import br.com.rodrigobriet.tmdbclient.core.requests.interfaces.RequestCallback;
+import br.com.rodrigobriet.tmdbclient.core.requests.interfaces.RequestMediator;
+import br.com.rodrigobriet.tmdbclient.core.requests.interfaces.RequestService;
 
 public class Resource<ModelT> {
 
 	protected String path;
+	protected int[] pathValues;
 	
 	protected String apiKey;	
 	
 	protected RequestService requestService;
 	protected MappingService<ModelT> mappingService;
 	
-	public Resource(String path, String apiKey, RequestService requestService, MappingService<ModelT> mappingService) {
+	public Resource(String path, String apiKey, RequestService requestService, MappingService<ModelT> mappingService, int ... pathValues) {
 		this.path = path;
 		this.apiKey = apiKey;
 		this.requestService = requestService;
 		this.mappingService = mappingService;
+		this.pathValues = pathValues;
 	}
 	
 	public void request(RequestCallback<ModelT> callback) {
@@ -51,7 +56,54 @@ public class Resource<ModelT> {
 	}
 	
 	protected String buildPath() {
-		return path + buildQueryString();
+		return createParametizedURI() + buildQueryString();
+	}
+	
+	private String createParametizedURI() {			
+		return buildURI(replaceParams(cleanEmpty(path.split("/"))));
+	}
+	
+	private List<String> cleanEmpty(String[] values) {
+		List<String> cleanValues = new ArrayList<>();
+		
+		for(String v: values) {
+			if(!v.isEmpty())
+				cleanValues.add(v);
+		}
+		
+		return cleanValues;
+	}
+	
+	private List<String> replaceParams(List<String> values) {
+		int j = 0;
+		for(int i = 0; i < values.size(); i++) {
+			String v = values.get(i);
+			if(v.matches("^\\{.+\\}$")) {
+				try {
+					values.set(i, ""+pathValues[j]);
+					j++;
+				} catch (Exception e) {
+					throw new InvalidParameterValue("Number of path params and values not match.");
+				}
+			}
+				
+		}
+		
+		return values;
+	}
+	
+	private String buildURI(List<String> uriS) {
+		StringBuilder sb = new StringBuilder();
+		
+		for(String v: uriS) {
+			if(sb.length() != 0) {
+				sb.append("/");
+			}
+				
+			sb.append(v);
+		}
+		
+		return sb.toString();
 	}
 	
 	protected String buildQueryString() {

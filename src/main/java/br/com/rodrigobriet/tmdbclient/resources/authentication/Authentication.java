@@ -1,34 +1,31 @@
 package br.com.rodrigobriet.tmdbclient.resources.authentication;
 
 import br.com.rodrigobriet.tmdbclient.core.mapping.GsonMapping;
-import br.com.rodrigobriet.tmdbclient.core.requests.RequestService;
+import br.com.rodrigobriet.tmdbclient.core.requests.interfaces.RequestService;
 import br.com.rodrigobriet.tmdbclient.core.resources.Resource;
 import br.com.rodrigobriet.tmdbclient.core.resources.ResourceQuery;
-import br.com.rodrigobriet.tmdbclient.resources.authentication.models.GuestSession;
-import br.com.rodrigobriet.tmdbclient.resources.authentication.models.RequestToken;
-import br.com.rodrigobriet.tmdbclient.resources.authentication.models.Session;
-import br.com.rodrigobriet.tmdbclient.resources.authentication.query.SessionQuery;
+import br.com.rodrigobriet.tmdbclient.core.resources.ResourcesConf;
+import br.com.rodrigobriet.tmdbclient.resources.authentication.models.AuthenticationGuestSession;
+import br.com.rodrigobriet.tmdbclient.resources.authentication.models.AuthenticationRequestToken;
+import br.com.rodrigobriet.tmdbclient.resources.authentication.models.AuthenticationSession;
+import br.com.rodrigobriet.tmdbclient.resources.authentication.query.AuthenticationSessionQuery;
 
-public class Authentication {
-	
-	private String apiKey;
-	private RequestService requestService;
+public class Authentication extends ResourcesConf {
 	
 	public Authentication(String apiKey, RequestService requestService) {
-		this.apiKey = apiKey;
-		this.requestService = requestService;
+		super(apiKey, requestService);
 	}
 
-	public Resource<RequestToken> createRequestToken() {
-		return new Resource<>("/authentication/token/new", apiKey, requestService, new GsonMapping<>(RequestToken.class));
+	public Resource<AuthenticationRequestToken> createRequestToken() {
+		return new Resource<>("/authentication/token/new", apiKey, requestService, new GsonMapping<>(AuthenticationRequestToken.class));
 	}
 	
-	public ResourceQuery<Session, SessionQuery> createSession() {
-		return new ResourceQuery<>("/authentication/session/new", apiKey, requestService, new GsonMapping<>(Session.class));
+	public ResourceQuery<AuthenticationSession, AuthenticationSessionQuery> createSession() {
+		return new ResourceQuery<>("/authentication/session/new", apiKey, requestService, new GsonMapping<>(AuthenticationSession.class));
 	}
 	
-	public Resource<GuestSession> createGuestSession() {
-		return new Resource<>("/authentication/guest_session/new", apiKey, requestService, new GsonMapping<>(GuestSession.class));
+	public Resource<AuthenticationGuestSession> createGuestSession() {
+		return new Resource<>("/authentication/guest_session/new", apiKey, requestService, new GsonMapping<>(AuthenticationGuestSession.class));
 	}
 
 }

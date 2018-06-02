@@ -2,7 +2,7 @@ package br.com.rodrigobriet.tmdbclient.resources.authentication.models;
 
 import com.google.gson.annotations.SerializedName;
 
-public class GuestSession {
+public class AuthenticationRequestToken {
 
 	@SerializedName("success")
 	private boolean success;
@@ -10,8 +10,8 @@ public class GuestSession {
 	@SerializedName("expires_at")
 	private String expireAt;
 	
-	@SerializedName("guest_session_id")
-	private String guestSessionId;
+	@SerializedName("request_token")
+	private String requestToken;
 
 	public boolean isSuccess() {
 		return success;
@@ -21,8 +21,8 @@ public class GuestSession {
 		return expireAt;
 	}
 
-	public String getGuestSessionId() {
-		return guestSessionId;
+	public String getRequestToken() {
+		return requestToken;
 	}
 	
 }
