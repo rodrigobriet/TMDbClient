@@ -5,6 +5,7 @@ import br.com.rodrigobriet.tmdbclient.core.requests.AsyncRequest;
 import br.com.rodrigobriet.tmdbclient.core.requests.interfaces.RequestService;
 import br.com.rodrigobriet.tmdbclient.resources.account.Account;
 import br.com.rodrigobriet.tmdbclient.resources.authentication.Authentication;
+import br.com.rodrigobriet.tmdbclient.resources.certifications.Certifications;
 import okhttp3.OkHttpClient;
 
 public class TMDb {
@@ -29,5 +30,9 @@ public class TMDb {
 	
 	public Account getAccount() {
 		return new Account(apiKey, requestService);
+	}
+	
+	public Certifications getCertifications() {
+		return new Certifications(apiKey, requestService);
 	}
 }
