@@ -6,6 +6,7 @@ import br.com.rodrigobriet.tmdbclient.core.requests.interfaces.RequestService;
 import br.com.rodrigobriet.tmdbclient.resources.account.Account;
 import br.com.rodrigobriet.tmdbclient.resources.authentication.Authentication;
 import br.com.rodrigobriet.tmdbclient.resources.certifications.Certifications;
+import br.com.rodrigobriet.tmdbclient.resources.changes.Changes;
 import okhttp3.OkHttpClient;
 
 public class TMDb {
@@ -34,5 +35,9 @@ public class TMDb {
 	
 	public Certifications getCertifications() {
 		return new Certifications(apiKey, requestService);
+	}
+	
+	public Changes getChanges() {
+		return new Changes(apiKey, requestService);
 	}
 }
