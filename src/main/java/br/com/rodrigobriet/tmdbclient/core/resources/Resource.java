@@ -14,19 +14,35 @@ import br.com.rodrigobriet.tmdbclient.core.requests.interfaces.RequestService;
 public class Resource<ModelT> {
 
 	protected String path;
-	protected int[] pathValues;
+	protected int[] intPathValues;
+	protected String[] StringPathValues;
 	
 	protected String apiKey;	
 	
 	protected RequestService requestService;
 	protected MappingService<ModelT> mappingService;
 	
+	public Resource(String path, String apiKey, RequestService requestService, MappingService<ModelT> mappingService) {
+		this.path = path;
+		this.apiKey = apiKey;
+		this.requestService = requestService;
+		this.mappingService = mappingService;
+	}
+	
 	public Resource(String path, String apiKey, RequestService requestService, MappingService<ModelT> mappingService, int ... pathValues) {
 		this.path = path;
 		this.apiKey = apiKey;
 		this.requestService = requestService;
 		this.mappingService = mappingService;
-		this.pathValues = pathValues;
+		this.intPathValues = pathValues;
+	}
+	
+	public Resource(String path, String apiKey, RequestService requestService, MappingService<ModelT> mappingService, String ... pathValues) {
+		this.path = path;
+		this.apiKey = apiKey;
+		this.requestService = requestService;
+		this.mappingService = mappingService;
+		this.StringPathValues = pathValues;
 	}
 	
 	public void request(RequestCallback<ModelT> callback) {
@@ -80,7 +96,12 @@ public class Resource<ModelT> {
 			String v = values.get(i);
 			if(v.matches("^\\{.+\\}$")) {
 				try {
-					values.set(i, ""+pathValues[j]);
+					if(intPathValues != null) {
+						values.set(i, ""+intPathValues[j]);
+					} else {
+						values.set(i, StringPathValues[j]);
+					}
+					
 					j++;
 				} catch (Exception e) {
 					throw new InvalidParameterValue("Number of path params and values not match.");
