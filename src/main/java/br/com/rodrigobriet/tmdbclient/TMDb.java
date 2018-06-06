@@ -9,6 +9,7 @@ import br.com.rodrigobriet.tmdbclient.resources.certifications.Certifications;
 import br.com.rodrigobriet.tmdbclient.resources.changes.Changes;
 import br.com.rodrigobriet.tmdbclient.resources.collections.Collections;
 import br.com.rodrigobriet.tmdbclient.resources.companies.Companies;
+import br.com.rodrigobriet.tmdbclient.resources.configuration.Configuration;
 import okhttp3.OkHttpClient;
 
 public class TMDb {
@@ -49,6 +50,10 @@ public class TMDb {
 	
 	public Companies getCompanies() {
 		return new Companies(apiKey, requestService);
+	}
+	
+	public Configuration getConfiguration() {
+		return new Configuration(apiKey, requestService);
 	}
 	
 }
