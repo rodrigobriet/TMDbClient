@@ -1,8 +1,8 @@
 package br.com.rodrigobriet.tmdbclient.resources.changes.models;
 
 import br.com.rodrigobriet.tmdbclient.core.models.Pagged;
-import br.com.rodrigobriet.tmdbclient.resources.changes.models.submodels.ChangeList;
+import br.com.rodrigobriet.tmdbclient.resources.changes.models.submodels.ChangeListResultItem;
 
-public class ChangePersonList extends Pagged<ChangeList> {
+public class ChangePersonList extends Pagged<ChangeListResultItem> {
 
 }

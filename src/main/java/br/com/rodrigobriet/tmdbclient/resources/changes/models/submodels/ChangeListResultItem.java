@@ -2,7 +2,7 @@ package br.com.rodrigobriet.tmdbclient.resources.changes.models.submodels;
 
 import com.google.gson.annotations.SerializedName;
 
-public class ChangeList {
+public class ChangeListResultItem {
 
 	@SerializedName("id")
 	private int id;

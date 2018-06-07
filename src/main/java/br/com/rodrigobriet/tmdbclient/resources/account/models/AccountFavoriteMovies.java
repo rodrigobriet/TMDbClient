@@ -1,8 +1,8 @@
 package br.com.rodrigobriet.tmdbclient.resources.account.models;
 
 import br.com.rodrigobriet.tmdbclient.core.models.Pagged;
-import br.com.rodrigobriet.tmdbclient.resources.account.models.submodels.AccountMovieListResult;
+import br.com.rodrigobriet.tmdbclient.resources.account.models.submodels.AccountMovieResultItem;
 
-public class AccountFavoriteMovies extends Pagged<AccountMovieListResult> {
+public class AccountFavoriteMovies extends Pagged<AccountMovieResultItem> {
 
 }
