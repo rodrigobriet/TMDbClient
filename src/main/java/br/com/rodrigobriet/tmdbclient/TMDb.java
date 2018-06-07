@@ -12,6 +12,7 @@ import br.com.rodrigobriet.tmdbclient.resources.companies.Companies;
 import br.com.rodrigobriet.tmdbclient.resources.configuration.Configuration;
 import br.com.rodrigobriet.tmdbclient.resources.credits.Credits;
 import br.com.rodrigobriet.tmdbclient.resources.discover.Discover;
+import br.com.rodrigobriet.tmdbclient.resources.find.Find;
 import okhttp3.OkHttpClient;
 
 public class TMDb {
@@ -64,6 +65,10 @@ public class TMDb {
 	
 	public Discover getDiscover() {
 		return new Discover(apiKey, requestService);
+	}
+	
+	public Find getFind() {
+		return new Find(apiKey, requestService);
 	}
 	
 }

@@ -11,7 +11,15 @@ public class ResourceQuery<ModelT, QueryT extends QueryField> extends Resource<M
 
 	protected HashMap<QueryT, String> queryString = new HashMap<>();
 	
+	public ResourceQuery(String path, String apiKey, RequestService requestService, MappingService<ModelT> mappingService) {
+		super(path, apiKey, requestService, mappingService);
+	}
+	
 	public ResourceQuery(String path, String apiKey, RequestService requestService, MappingService<ModelT> mappingService, int ... pathValues) {
+		super(path, apiKey, requestService, mappingService, pathValues);
+	}
+	
+	public ResourceQuery(String path, String apiKey, RequestService requestService, MappingService<ModelT> mappingService, String ... pathValues) {
 		super(path, apiKey, requestService, mappingService, pathValues);
 	}
 

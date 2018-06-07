@@ -4,7 +4,7 @@ public class QueryField {
 
 	private String name;
 	
-	protected QueryField(String name) {
+	public QueryField(String name) {
 		this.name = name;
 	}
 	

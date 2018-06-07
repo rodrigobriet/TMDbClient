@@ -5,10 +5,12 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import br.com.rodrigobriet.tmdbclient.core.models.StatusMessage;
+import br.com.rodrigobriet.tmdbclient.resources.find.deserializer.FindPersonResultItemCustomDeserializer;
+import br.com.rodrigobriet.tmdbclient.resources.find.models.FindById;
 
 public class GsonMapping<T> extends AbstractMapping<T> {
 
-	private Gson gson = new GsonBuilder().create();
+	private Gson gson = new GsonBuilder().registerTypeAdapter(FindById.class, new FindPersonResultItemCustomDeserializer()).create();
 	private Type type;
 	
 	public GsonMapping(Class<T> clazz) {
