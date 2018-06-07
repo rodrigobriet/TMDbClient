@@ -11,6 +11,7 @@ import br.com.rodrigobriet.tmdbclient.resources.collections.Collections;
 import br.com.rodrigobriet.tmdbclient.resources.companies.Companies;
 import br.com.rodrigobriet.tmdbclient.resources.configuration.Configuration;
 import br.com.rodrigobriet.tmdbclient.resources.credits.Credits;
+import br.com.rodrigobriet.tmdbclient.resources.discover.Discover;
 import okhttp3.OkHttpClient;
 
 public class TMDb {
@@ -59,6 +60,10 @@ public class TMDb {
 	
 	public Credits getCredits() {
 		return new Credits(apiKey, requestService);
+	}
+	
+	public Discover getDiscover() {
+		return new Discover(apiKey, requestService);
 	}
 	
 }
