@@ -13,6 +13,7 @@ import br.com.rodrigobriet.tmdbclient.resources.configuration.Configuration;
 import br.com.rodrigobriet.tmdbclient.resources.credits.Credits;
 import br.com.rodrigobriet.tmdbclient.resources.discover.Discover;
 import br.com.rodrigobriet.tmdbclient.resources.find.Find;
+import br.com.rodrigobriet.tmdbclient.resources.genres.Genres;
 import okhttp3.OkHttpClient;
 
 public class TMDb {
@@ -69,6 +70,10 @@ public class TMDb {
 	
 	public Find getFind() {
 		return new Find(apiKey, requestService);
+	}
+	
+	public Genres getGenres() {
+		return new Genres(apiKey, requestService);
 	}
 	
 }
