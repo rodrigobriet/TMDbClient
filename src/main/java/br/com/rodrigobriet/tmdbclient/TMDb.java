@@ -14,6 +14,7 @@ import br.com.rodrigobriet.tmdbclient.resources.credits.Credits;
 import br.com.rodrigobriet.tmdbclient.resources.discover.Discover;
 import br.com.rodrigobriet.tmdbclient.resources.find.Find;
 import br.com.rodrigobriet.tmdbclient.resources.genres.Genres;
+import br.com.rodrigobriet.tmdbclient.resources.guest.Guest;
 import okhttp3.OkHttpClient;
 
 public class TMDb {
@@ -74,6 +75,10 @@ public class TMDb {
 	
 	public Genres getGenres() {
 		return new Genres(apiKey, requestService);
+	}
+	
+	public Guest getGuest() {
+		return new Guest(apiKey, requestService);
 	}
 	
 }
