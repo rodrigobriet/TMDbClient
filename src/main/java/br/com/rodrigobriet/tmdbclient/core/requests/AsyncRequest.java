@@ -54,6 +54,15 @@ public class AsyncRequest implements RequestService {
 		makeCall(r.build(), mediator);
 	}
 	
+	@Override
+	public void delete(String uri, RequestMediator mediator) {
+		Request.Builder r = new Request.Builder()
+				.delete()
+				.url(baseURL + uri);				
+		
+		makeCall(r.build(), mediator);
+	}
+	
 	private void makeCall(Request r, RequestMediator mediator) {
 		client.newCall(r).enqueue(new Callback() {
 			@Override

@@ -9,31 +9,23 @@ import br.com.rodrigobriet.tmdbclient.core.requests.interfaces.RequestMediator;
 import br.com.rodrigobriet.tmdbclient.core.requests.interfaces.RequestService;
 import br.com.rodrigobriet.tmdbclient.core.resources.query.QueryField;
 
-public class ResourcePost<QueryT extends QueryField, BodyT> extends ResourceQuery<StatusMessage, QueryT> {
-
-	protected BodyT body;
+public class ResourcePostNoBody<QueryT extends QueryField> extends ResourceQuery<StatusMessage, QueryT> {
 	
-	public ResourcePost(String path, String apiKey, RequestService requestService, BodyT body) {
+	public ResourcePostNoBody(String path, String apiKey, RequestService requestService) {
 		super(path, apiKey, requestService, new GsonMapping<>(StatusMessage.class));
-		
-		this.body = body;
 	}
 	
-	public ResourcePost(String path, String apiKey, RequestService requestService, BodyT body, int ... pathValues) {
+	public ResourcePostNoBody(String path, String apiKey, RequestService requestService, int ... pathValues) {
 		super(path, apiKey, requestService, new GsonMapping<>(StatusMessage.class), pathValues);
-		
-		this.body = body;
 	}
 	
-	public ResourcePost(String path, String apiKey, RequestService requestService, BodyT body, String ... pathValues) {
+	public ResourcePostNoBody(String path, String apiKey, RequestService requestService, String ... pathValues) {
 		super(path, apiKey, requestService, new GsonMapping<>(StatusMessage.class), pathValues);
-		
-		this.body = body;
 	}
 
 	@Override
 	protected void request(RequestCallback<StatusMessage> callback, RequestMediator requestMediator) {
-		requestService.post(buildPath(), new Gson().toJson(body), requestMediator);
+		requestService.post(buildPath(), new Gson().toJson(""), requestMediator);
 	}
-
+	
 }
