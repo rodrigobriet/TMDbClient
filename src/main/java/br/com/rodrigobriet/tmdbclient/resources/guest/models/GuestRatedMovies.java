@@ -1,8 +1,8 @@
 package br.com.rodrigobriet.tmdbclient.resources.guest.models;
 
 import br.com.rodrigobriet.tmdbclient.core.models.Pagged;
-import br.com.rodrigobriet.tmdbclient.resources.guest.models.submodels.GuestRatedMoviesResultItem;
+import br.com.rodrigobriet.tmdbclient.core.models.global.MovieResultItem;
 
-public class GuestRatedMovies extends Pagged<GuestRatedMoviesResultItem> {
+public class GuestRatedMovies extends Pagged<MovieResultItem> {
 
 }

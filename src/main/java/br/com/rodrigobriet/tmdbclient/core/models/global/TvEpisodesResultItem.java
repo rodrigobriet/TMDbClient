@@ -1,12 +1,9 @@
-package br.com.rodrigobriet.tmdbclient.resources.account.models.submodels;
+package br.com.rodrigobriet.tmdbclient.core.models.global;
 
 import com.google.gson.annotations.SerializedName;
 
-public class AccountTvEpisodesResultItem {
+public class TvEpisodesResultItem {
 
-	@SerializedName("_id")
-	private String _id;
-	
 	@SerializedName("air_date")
 	private String airDate;
 	
@@ -36,10 +33,6 @@ public class AccountTvEpisodesResultItem {
 	
 	@SerializedName("rating")
 	private int rating;
-
-	public String get_id() {
-		return _id;
-	}
 
 	public String getAirDate() {
 		return airDate;

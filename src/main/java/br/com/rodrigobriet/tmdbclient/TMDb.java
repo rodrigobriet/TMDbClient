@@ -19,6 +19,7 @@ import br.com.rodrigobriet.tmdbclient.resources.keywords.Keywords;
 import br.com.rodrigobriet.tmdbclient.resources.lists.Lists;
 import br.com.rodrigobriet.tmdbclient.resources.networks.Networks;
 import br.com.rodrigobriet.tmdbclient.resources.reviews.Reviews;
+import br.com.rodrigobriet.tmdbclient.resources.search.Search;
 import okhttp3.OkHttpClient;
 
 public class TMDb {
@@ -99,6 +100,10 @@ public class TMDb {
 	
 	public Reviews getReviews() {
 		return new Reviews(apiKey, requestService);
+	}
+	
+	public Search getSearch() {
+		return new Search(apiKey, requestService);
 	}
 	
 }

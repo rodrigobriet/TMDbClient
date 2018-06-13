@@ -1,8 +1,8 @@
 package br.com.rodrigobriet.tmdbclient.resources.discover.models;
 
 import br.com.rodrigobriet.tmdbclient.core.models.Pagged;
-import br.com.rodrigobriet.tmdbclient.resources.discover.models.submodels.MovieDiscoverResultItem;
+import br.com.rodrigobriet.tmdbclient.core.models.global.MovieResultItem;
 
-public class MovieDiscoverResult extends Pagged<MovieDiscoverResultItem> {
+public class MovieDiscoverResult extends Pagged<MovieResultItem> {
 
 }

@@ -1,10 +1,10 @@
-package br.com.rodrigobriet.tmdbclient.resources.find.models.submodels;
+package br.com.rodrigobriet.tmdbclient.core.models.global;
 
 import java.util.List;
 
 import com.google.gson.annotations.SerializedName;
 
-public class FindPersonResultItem {
+public class PersonResultItem {
 
 	@SerializedName("profile_path")
 	private String profilePath;
@@ -21,12 +21,13 @@ public class FindPersonResultItem {
 	@SerializedName("popularity")
 	private float popularity;
 		
-	private List<FindPersonResultItemKnowForMovie> knownMovies;
+	private List<MovieResultItem> knownMovies;
 	
-	private List<FindPersonResultItemKnowForTv> knownTv;
-
-	public FindPersonResultItem(String profilePath, boolean adult, int id, String name, float popularity,
-			List<FindPersonResultItemKnowForMovie> knownMovies, List<FindPersonResultItemKnowForTv> knownTv) {
+	private List<TvResultItem> knownTv;
+	
+	public PersonResultItem(String profilePath, boolean adult, int id, String name, float popularity,
+			List<MovieResultItem> knownMovies, List<TvResultItem> knownTv) {
+		super();
 		this.profilePath = profilePath;
 		this.adult = adult;
 		this.id = id;
@@ -56,11 +57,11 @@ public class FindPersonResultItem {
 		return popularity;
 	}
 
-	public List<FindPersonResultItemKnowForMovie> getKnownMovies() {
+	public List<MovieResultItem> getKnownMovies() {
 		return knownMovies;
 	}
 
-	public List<FindPersonResultItemKnowForTv> getKnownTv() {
+	public List<TvResultItem> getKnownTv() {
 		return knownTv;
 	}
 	

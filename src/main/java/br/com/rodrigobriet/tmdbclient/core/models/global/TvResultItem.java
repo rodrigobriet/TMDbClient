@@ -1,8 +1,8 @@
-package br.com.rodrigobriet.tmdbclient.resources.find.models.submodels;
+package br.com.rodrigobriet.tmdbclient.core.models.global;
 
 import com.google.gson.annotations.SerializedName;
 
-public class FindTvResultItem {
+public class TvResultItem {
 
 	@SerializedName("poster_path")
 	private String posterPath;
@@ -42,6 +42,9 @@ public class FindTvResultItem {
 	
 	@SerializedName("original_name")
 	private String originalName;
+	
+	@SerializedName("media_type")
+	private String mediaType = "tv";
 
 	public String getPosterPath() {
 		return posterPath;
@@ -93,6 +96,10 @@ public class FindTvResultItem {
 
 	public String getOriginalName() {
 		return originalName;
+	}
+
+	public String getMediaType() {
+		return mediaType;
 	}
 	
 }

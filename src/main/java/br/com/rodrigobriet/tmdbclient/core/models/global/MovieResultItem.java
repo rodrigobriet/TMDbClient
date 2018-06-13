@@ -1,8 +1,8 @@
-package br.com.rodrigobriet.tmdbclient.resources.account.models.submodels;
+package br.com.rodrigobriet.tmdbclient.core.models.global;
 
 import com.google.gson.annotations.SerializedName;
 
-public class AccountMovieResultItem {
+public class MovieResultItem {
 
 	@SerializedName("poster_path")
 	private String posterPath;
@@ -16,14 +16,14 @@ public class AccountMovieResultItem {
 	@SerializedName("release_date")
 	private String releaseDate;
 	
+	@SerializedName("original_title")
+	private String originalTitle;
+	
 	@SerializedName("genre_ids")
 	private int[] genreIds;
 	
 	@SerializedName("id")
 	private int id;
-	
-	@SerializedName("original_title")
-	private String originalTitle;
 	
 	@SerializedName("original_language")
 	private String originalLanguage;
@@ -45,6 +45,9 @@ public class AccountMovieResultItem {
 	
 	@SerializedName("vote_average")
 	private float voteAverage;
+	
+	@SerializedName("media_type")
+	private String mediaType = "movie";
 
 	public String getPosterPath() {
 		return posterPath;
@@ -62,16 +65,16 @@ public class AccountMovieResultItem {
 		return releaseDate;
 	}
 
+	public String getOriginalTitle() {
+		return originalTitle;
+	}
+
 	public int[] getGenreIds() {
 		return genreIds;
 	}
 
 	public int getId() {
 		return id;
-	}
-
-	public String getOriginalTitle() {
-		return originalTitle;
 	}
 
 	public String getOriginalLanguage() {
@@ -100,6 +103,10 @@ public class AccountMovieResultItem {
 
 	public float getVoteAverage() {
 		return voteAverage;
+	}
+
+	public String getMediaType() {
+		return mediaType;
 	}
 	
 }

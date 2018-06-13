@@ -4,51 +4,57 @@ import java.util.List;
 
 import com.google.gson.annotations.SerializedName;
 
-import br.com.rodrigobriet.tmdbclient.resources.find.models.submodels.FindMovieResultItem;
-import br.com.rodrigobriet.tmdbclient.resources.find.models.submodels.FindPersonResultItem;
+import br.com.rodrigobriet.tmdbclient.core.models.global.MovieResultItem;
+import br.com.rodrigobriet.tmdbclient.core.models.global.PersonResultItem;
+import br.com.rodrigobriet.tmdbclient.core.models.global.TvResultItem;
+import br.com.rodrigobriet.tmdbclient.core.models.global.TvSeasonResultItem;
 import br.com.rodrigobriet.tmdbclient.resources.find.models.submodels.FindTvEpisodeResultItem;
-import br.com.rodrigobriet.tmdbclient.resources.find.models.submodels.FindTvResultItem;
 
 public class FindById {
 
 	@SerializedName("movie_results")
-	private List<FindMovieResultItem> movieResults;
+	private List<MovieResultItem> movieResults;
 	
 	@SerializedName("person_results")
-	private List<FindPersonResultItem> personResults;
+	private List<PersonResultItem> personResults;
 	
 	@SerializedName("tv_results")
-	private List<FindTvResultItem> tvResults;
+	private List<TvResultItem> tvResults;
 	
 	@SerializedName("tv_episode_results")
 	private List<FindTvEpisodeResultItem> tvEspisodeResults;
 	
-	// TODO TvSeason valid ID to get object to map
-	//@SerializedName("tv_season_results")
-	//private List<FindTvSeasonResultItem> tvSeasonResults;
+	@SerializedName("tv_season_results")
+	private List<TvSeasonResultItem> tvSeasonResults;
 
-	public List<FindMovieResultItem> getMovieResults() {
-		return movieResults;
-	}
-
-	public FindById(List<FindMovieResultItem> movieResults, List<FindPersonResultItem> personResults,
-			List<FindTvResultItem> tvResults, List<FindTvEpisodeResultItem> tvEspisodeResults) {
+	public FindById(List<MovieResultItem> movieResults, List<PersonResultItem> personResults,
+			List<TvResultItem> tvResults, List<FindTvEpisodeResultItem> tvEspisodeResults, List<TvSeasonResultItem> tvSeasonResults) {
+		super();
 		this.movieResults = movieResults;
 		this.personResults = personResults;
 		this.tvResults = tvResults;
 		this.tvEspisodeResults = tvEspisodeResults;
+		this.tvSeasonResults = tvSeasonResults;
 	}
 
-	public List<FindPersonResultItem> getPersonResults() {
+	public List<MovieResultItem> getMovieResults() {
+		return movieResults;
+	}
+
+	public List<PersonResultItem> getPersonResults() {
 		return personResults;
 	}
 
-	public List<FindTvResultItem> getTvResults() {
+	public List<TvResultItem> getTvResults() {
 		return tvResults;
 	}
 
 	public List<FindTvEpisodeResultItem> getTvEspisodeResults() {
 		return tvEspisodeResults;
+	}
+
+	public List<TvSeasonResultItem> getTvSeasonResults() {
+		return tvSeasonResults;
 	}
 	
 }

@@ -12,12 +12,12 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 
+import br.com.rodrigobriet.tmdbclient.core.models.global.MovieResultItem;
+import br.com.rodrigobriet.tmdbclient.core.models.global.PersonResultItem;
+import br.com.rodrigobriet.tmdbclient.core.models.global.TvResultItem;
 import br.com.rodrigobriet.tmdbclient.resources.find.models.FindById;
-import br.com.rodrigobriet.tmdbclient.resources.find.models.submodels.FindPersonResultItem;
-import br.com.rodrigobriet.tmdbclient.resources.find.models.submodels.FindPersonResultItemKnowForMovie;
-import br.com.rodrigobriet.tmdbclient.resources.find.models.submodels.FindPersonResultItemKnowForTv;
 
-public class FindPersonResultItemCustomDeserializer implements JsonDeserializer<FindById> {
+public class FindByIdDeserializer implements JsonDeserializer<FindById> {
 
 	@Override
 	public FindById deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
@@ -25,30 +25,30 @@ public class FindPersonResultItemCustomDeserializer implements JsonDeserializer<
 		
 		// Parse "person_results"
 		JsonArray personResults = json.getAsJsonObject().get("person_results").getAsJsonArray();
-		List<FindPersonResultItem> pResults = new ArrayList<>();
+		List<PersonResultItem> pResults = new ArrayList<>();
 		
 		for(int i = 0; i < personResults.size(); i++) {
 			JsonObject personResult = personResults.get(i).getAsJsonObject();
-			FindPersonResultItem tP = new Gson().fromJson(personResult, FindPersonResultItem.class);
+			PersonResultItem tP = new Gson().fromJson(personResult, PersonResultItem.class);
 
 			JsonArray knownFor = personResult.get("known_for").getAsJsonArray();
-			List<FindPersonResultItemKnowForMovie> kMovie = new ArrayList<>();
-			List<FindPersonResultItemKnowForTv> kTv = new ArrayList<>();
+			List<MovieResultItem> kMovie = new ArrayList<>();
+			List<TvResultItem> kTv = new ArrayList<>();
 			
 			for(int j = 0; j < knownFor.size(); j++) {
 				JsonObject knownType = knownFor.get(j).getAsJsonObject();
 				
 				if(knownType.get("media_type").getAsString().equals("movie")) {
-					kMovie.add(new Gson().fromJson(knownType, FindPersonResultItemKnowForMovie.class));
+					kMovie.add(new Gson().fromJson(knownType, MovieResultItem.class));
 				} else {
-					kTv.add(new Gson().fromJson(knownType, FindPersonResultItemKnowForTv.class));
+					kTv.add(new Gson().fromJson(knownType, TvResultItem.class));
 				}
 			}
 			
-			pResults.add(new FindPersonResultItem(tP.getProfilePath(), tP.isAdult(), tP.getId(), tP.getName(), tP.getPopularity(), kMovie, kTv));
+			pResults.add(new PersonResultItem(tP.getProfilePath(), tP.isAdult(), tP.getId(), tP.getName(), tP.getPopularity(), kMovie, kTv));
 		}
 
-		return new FindById(byId.getMovieResults(), pResults, byId.getTvResults(), byId.getTvEspisodeResults());
+		return new FindById(byId.getMovieResults(), pResults, byId.getTvResults(), byId.getTvEspisodeResults(), byId.getTvSeasonResults());
 	}
 
 }

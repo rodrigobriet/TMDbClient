@@ -1,8 +1,8 @@
-package br.com.rodrigobriet.tmdbclient.resources.account.models.submodels;
+package br.com.rodrigobriet.tmdbclient.core.models.global;
 
 import com.google.gson.annotations.SerializedName;
 
-public class AccountTvResultItemWithRating {
+public class MovieResultItemWithRating extends MovieResultItem {
 
 	@SerializedName("rating")
 	private int rating;
