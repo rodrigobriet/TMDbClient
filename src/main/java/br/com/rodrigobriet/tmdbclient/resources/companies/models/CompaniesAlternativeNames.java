@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.google.gson.annotations.SerializedName;
 
-import br.com.rodrigobriet.tmdbclient.resources.companies.models.submodels.CompaniesAlternativeNamesList;
+import br.com.rodrigobriet.tmdbclient.resources.companies.models.submodels.CompaniesAlternativeNamesResultItem;
 
 public class CompaniesAlternativeNames {
 
@@ -12,13 +12,13 @@ public class CompaniesAlternativeNames {
 	private int id;
 	
 	@SerializedName("results")
-	private List<CompaniesAlternativeNamesList> results;
+	private List<CompaniesAlternativeNamesResultItem> results;
 
 	public int getId() {
 		return id;
 	}
 
-	public List<CompaniesAlternativeNamesList> getResults() {
+	public List<CompaniesAlternativeNamesResultItem> getResults() {
 		return results;
 	}
 	

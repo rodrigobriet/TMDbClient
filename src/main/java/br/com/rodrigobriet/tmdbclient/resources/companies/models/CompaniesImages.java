@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.google.gson.annotations.SerializedName;
 
-import br.com.rodrigobriet.tmdbclient.resources.companies.models.submodels.CompaniesImagesLogo;
+import br.com.rodrigobriet.tmdbclient.resources.companies.models.submodels.CompaniesImagesLogosItem;
 
 public class CompaniesImages {
 
@@ -12,13 +12,13 @@ public class CompaniesImages {
 	private int id;
 	
 	@SerializedName("logos")
-	private List<CompaniesImagesLogo> logos;
+	private List<CompaniesImagesLogosItem> logos;
 
 	public int getId() {
 		return id;
 	}
 
-	public List<CompaniesImagesLogo> getLogos() {
+	public List<CompaniesImagesLogosItem> getLogos() {
 		return logos;
 	}
 	

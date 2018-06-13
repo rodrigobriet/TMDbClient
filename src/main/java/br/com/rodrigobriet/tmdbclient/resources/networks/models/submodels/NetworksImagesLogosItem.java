@@ -1,8 +1,8 @@
-package br.com.rodrigobriet.tmdbclient.resources.companies.models.submodels;
+package br.com.rodrigobriet.tmdbclient.resources.networks.models.submodels;
 
 import com.google.gson.annotations.SerializedName;
 
-public class CompaniesImagesLogo {
+public class NetworksImagesLogosItem {
 
 	@SerializedName("aspect_ratio")
 	private float aspectRatio;
