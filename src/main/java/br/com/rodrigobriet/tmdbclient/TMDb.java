@@ -18,6 +18,7 @@ import br.com.rodrigobriet.tmdbclient.resources.guest.Guest;
 import br.com.rodrigobriet.tmdbclient.resources.keywords.Keywords;
 import br.com.rodrigobriet.tmdbclient.resources.lists.Lists;
 import br.com.rodrigobriet.tmdbclient.resources.networks.Networks;
+import br.com.rodrigobriet.tmdbclient.resources.people.People;
 import br.com.rodrigobriet.tmdbclient.resources.reviews.Reviews;
 import br.com.rodrigobriet.tmdbclient.resources.search.Search;
 import okhttp3.OkHttpClient;
@@ -96,6 +97,10 @@ public class TMDb {
 	
 	public Networks getNetworks() {
 		return new Networks(apiKey, requestService);
+	}
+	
+	public People getPeople() {
+		return new People(apiKey, requestService);
 	}
 	
 	public Reviews getReviews() {

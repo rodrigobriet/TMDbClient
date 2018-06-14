@@ -8,7 +8,6 @@ import br.com.rodrigobriet.tmdbclient.core.models.global.MovieResultItem;
 import br.com.rodrigobriet.tmdbclient.core.models.global.PersonResultItem;
 import br.com.rodrigobriet.tmdbclient.core.models.global.TvResultItem;
 
-// TODO custom deserialization
 public class SearchMulti {
 
 	@SerializedName("page")

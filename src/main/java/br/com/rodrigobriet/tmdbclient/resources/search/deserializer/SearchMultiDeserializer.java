@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
@@ -15,6 +16,7 @@ import com.google.gson.JsonParseException;
 import br.com.rodrigobriet.tmdbclient.core.models.global.MovieResultItem;
 import br.com.rodrigobriet.tmdbclient.core.models.global.PersonResultItem;
 import br.com.rodrigobriet.tmdbclient.core.models.global.TvResultItem;
+import br.com.rodrigobriet.tmdbclient.core.models.global.deserializer.PersonResultItemDeserializer;
 import br.com.rodrigobriet.tmdbclient.resources.search.models.SearchMulti;
 
 public class SearchMultiDeserializer implements JsonDeserializer<SearchMulti>{
@@ -39,7 +41,10 @@ public class SearchMultiDeserializer implements JsonDeserializer<SearchMulti>{
 			} else if (result.get("media_type").getAsString().equals("tv")) {
 				tResults.add(new Gson().fromJson(result, TvResultItem.class));
 			} else {
-				pResults.add(new Gson().fromJson(result, PersonResultItem.class));
+				pResults.add(new GsonBuilder()
+						.registerTypeAdapter(PersonResultItem.class, new PersonResultItemDeserializer())
+						.create()
+						.fromJson(result, PersonResultItem.class));
 			}
 			
 		}
