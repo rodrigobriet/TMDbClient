@@ -46,6 +46,7 @@ public class Resource<ModelT> {
 	}
 	
 	public void request(RequestCallback<ModelT> callback) {
+		System.out.println(buildPath());
 		RequestMediator requestMediator = new RequestMediator() {
 			
 			@Override

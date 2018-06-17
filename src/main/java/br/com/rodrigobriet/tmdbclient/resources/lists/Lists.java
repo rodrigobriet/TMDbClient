@@ -9,7 +9,7 @@ import br.com.rodrigobriet.tmdbclient.core.resources.ResourcePostNoBody;
 import br.com.rodrigobriet.tmdbclient.core.resources.ResourceQuery;
 import br.com.rodrigobriet.tmdbclient.core.resources.ResourcesConf;
 import br.com.rodrigobriet.tmdbclient.core.resources.query.AuthConfirmQuery;
-import br.com.rodrigobriet.tmdbclient.core.resources.query.AuthQuery;
+import br.com.rodrigobriet.tmdbclient.core.resources.query.AuthSessionQuery;
 import br.com.rodrigobriet.tmdbclient.core.resources.query.LanguageQuery;
 import br.com.rodrigobriet.tmdbclient.core.resources.query.MovieIdQuery;
 import br.com.rodrigobriet.tmdbclient.resources.lists.models.ListsCheckItemStatus;
@@ -34,18 +34,18 @@ public class Lists extends ResourcesConf {
 		return r;
 	}
 	
-	public ResourcePostCustomReturn<ListsCreateResult, AuthQuery, ListsCreate> create(ListsCreate list) {
+	public ResourcePostCustomReturn<ListsCreateResult, AuthSessionQuery, ListsCreate> create(ListsCreate list) {
 		return new ResourcePostCustomReturn<>("/list", apiKey, requestService, new GsonMapping<>(ListsCreateResult.class), list);
 	}
 	
-	public ResourcePost<AuthQuery, ListsItem> addMovie(String listId, int mediaId) {
+	public ResourcePost<AuthSessionQuery, ListsItem> addMovie(String listId, int mediaId) {
 		ListsItem body = new ListsItem(mediaId);
-		return new ResourcePost<AuthQuery, ListsItem>("/list/{list_id}/add_item", apiKey, requestService, body, listId);
+		return new ResourcePost<AuthSessionQuery, ListsItem>("/list/{list_id}/add_item", apiKey, requestService, body, listId);
 	}
 	
-	public ResourcePost<AuthQuery, ListsItem> removeMovie(String listId, int mediaId) {
+	public ResourcePost<AuthSessionQuery, ListsItem> removeMovie(String listId, int mediaId) {
 		ListsItem body = new ListsItem(mediaId);
-		return new ResourcePost<AuthQuery, ListsItem>("/list/{list_id}/remove_item", apiKey, requestService, body, listId);
+		return new ResourcePost<AuthSessionQuery, ListsItem>("/list/{list_id}/remove_item", apiKey, requestService, body, listId);
 	}
 	
 	public ResourcePostNoBody<AuthConfirmQuery> clear(String listId, boolean confirmation) {
@@ -55,7 +55,7 @@ public class Lists extends ResourcesConf {
 	}
 	
 	// API returns error, but delete
-	public ResourceDelete<AuthQuery> delete(String listId) {
+	public ResourceDelete<AuthSessionQuery> delete(String listId) {
 		return new ResourceDelete<>("/list/{list_id}", apiKey, requestService, listId);
 	}
 	

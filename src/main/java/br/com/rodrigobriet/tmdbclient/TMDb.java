@@ -17,6 +17,7 @@ import br.com.rodrigobriet.tmdbclient.resources.genres.Genres;
 import br.com.rodrigobriet.tmdbclient.resources.guest.Guest;
 import br.com.rodrigobriet.tmdbclient.resources.keywords.Keywords;
 import br.com.rodrigobriet.tmdbclient.resources.lists.Lists;
+import br.com.rodrigobriet.tmdbclient.resources.movies.Movies;
 import br.com.rodrigobriet.tmdbclient.resources.networks.Networks;
 import br.com.rodrigobriet.tmdbclient.resources.people.People;
 import br.com.rodrigobriet.tmdbclient.resources.reviews.Reviews;
@@ -93,6 +94,10 @@ public class TMDb {
 	
 	public Lists getLists() {
 		return new Lists(apiKey, requestService);
+	}
+	
+	public Movies getMovies() {
+		return new Movies(apiKey, requestService);
 	}
 	
 	public Networks getNetworks() {

@@ -8,6 +8,7 @@ import br.com.rodrigobriet.tmdbclient.core.resources.ResourceQueryAppend;
 import br.com.rodrigobriet.tmdbclient.core.resources.ResourcesConf;
 import br.com.rodrigobriet.tmdbclient.core.resources.query.LanguageQuery;
 import br.com.rodrigobriet.tmdbclient.core.resources.query.PaggedQuery;
+import br.com.rodrigobriet.tmdbclient.core.resources.query.PeopleDetailsAppendQuery;
 import br.com.rodrigobriet.tmdbclient.resources.people.appends.PeopleAppend;
 import br.com.rodrigobriet.tmdbclient.resources.people.models.PeopleCombinedCredits;
 import br.com.rodrigobriet.tmdbclient.resources.people.models.PeopleDetails;
@@ -26,8 +27,8 @@ public class People extends ResourcesConf {
 		super(apiKey, requestService);
 	}
 	
-	public ResourceQueryAppend<PeopleDetails, LanguageQuery, PeopleAppend> getDetails(int personId, PeopleAppend ... appends) {
-		ResourceQueryAppend<PeopleDetails, LanguageQuery, PeopleAppend> r =
+	public ResourceQueryAppend<PeopleDetails, LanguageQuery, PeopleAppend, PeopleDetailsAppendQuery> getDetails(int personId, PeopleAppend ... appends) {
+		ResourceQueryAppend<PeopleDetails, LanguageQuery, PeopleAppend, PeopleDetailsAppendQuery> r =
 				new ResourceQueryAppend<>("/person/{person_id}", apiKey, requestService, new GsonMapping<>(PeopleDetails.class), personId);
 		
 		for(PeopleAppend p: appends) {

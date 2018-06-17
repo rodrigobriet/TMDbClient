@@ -5,7 +5,7 @@ import br.com.rodrigobriet.tmdbclient.core.requests.interfaces.RequestService;
 import br.com.rodrigobriet.tmdbclient.core.resources.ResourcePost;
 import br.com.rodrigobriet.tmdbclient.core.resources.ResourceQuery;
 import br.com.rodrigobriet.tmdbclient.core.resources.ResourcesConf;
-import br.com.rodrigobriet.tmdbclient.core.resources.query.AuthQuery;
+import br.com.rodrigobriet.tmdbclient.core.resources.query.AuthSessionQuery;
 import br.com.rodrigobriet.tmdbclient.core.resources.query.PaggedAuthQuery;
 import br.com.rodrigobriet.tmdbclient.core.resources.query.SortedAuthQuery;
 import br.com.rodrigobriet.tmdbclient.resources.account.models.AccountCreatedList;
@@ -26,7 +26,7 @@ public class Account extends ResourcesConf {
 		super(apiKey, requestService);
 	}
 	
-	public ResourceQuery<AccountDetails, AuthQuery> getDetails() {
+	public ResourceQuery<AccountDetails, AuthSessionQuery> getDetails() {
 		return new ResourceQuery<>("/account", apiKey, requestService, new GsonMapping<>(AccountDetails.class));
 	}
 	
@@ -62,11 +62,11 @@ public class Account extends ResourcesConf {
 		return new ResourceQuery<>("/account/{account_id}/watchlist/tv", apiKey, requestService, new GsonMapping<>(AccountTvShowWatchList.class), accountId);
 	}
 	
-	public ResourcePost<AuthQuery, AccountMarkFavorite> setAsFavorite(int accountId, AccountMarkFavorite favorite) {
+	public ResourcePost<AuthSessionQuery, AccountMarkFavorite> setAsFavorite(int accountId, AccountMarkFavorite favorite) {
 		return new ResourcePost<>("/account/{account_id}/favorite", apiKey, requestService, favorite, accountId);
 	}
 	
-	public ResourcePost<AuthQuery, AccountAddWatchList> addToWatchList(int accountId, AccountAddWatchList addToWatchlist) {
+	public ResourcePost<AuthSessionQuery, AccountAddWatchList> addToWatchList(int accountId, AccountAddWatchList addToWatchlist) {
 		return new ResourcePost<>("/account/{account_id}/watchlist", apiKey, requestService, addToWatchlist, accountId);
 	}
 	
