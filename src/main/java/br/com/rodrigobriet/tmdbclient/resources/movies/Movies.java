@@ -14,7 +14,7 @@ import br.com.rodrigobriet.tmdbclient.core.resources.query.ImageQuery;
 import br.com.rodrigobriet.tmdbclient.core.resources.query.LanguageQuery;
 import br.com.rodrigobriet.tmdbclient.core.resources.query.MoviesDetailsAppendQuery;
 import br.com.rodrigobriet.tmdbclient.core.resources.query.PaggedQuery;
-import br.com.rodrigobriet.tmdbclient.core.resources.query.PaggedWithRegion;
+import br.com.rodrigobriet.tmdbclient.core.resources.query.PaggedWithRegionQuery;
 import br.com.rodrigobriet.tmdbclient.resources.movies.appends.MoviesAppend;
 import br.com.rodrigobriet.tmdbclient.resources.movies.models.MoviesAccountStates;
 import br.com.rodrigobriet.tmdbclient.resources.movies.models.MoviesAlternativeTitles;
@@ -110,19 +110,19 @@ public class Movies extends ResourcesConf {
 		return new ResourceQuery<>("/movie/latest", apiKey, requestService, new GsonMapping<>(MoviesLatest.class));
 	}
 	
-	public ResourceQuery<MoviesNowPlaying, PaggedWithRegion> getNowPlaying() {
+	public ResourceQuery<MoviesNowPlaying, PaggedWithRegionQuery> getNowPlaying() {
 		return new ResourceQuery<>("/movie/now_playing", apiKey, requestService, new GsonMapping<>(MoviesNowPlaying.class));
 	}
 	
-	public ResourceQuery<MoviesPopular, PaggedWithRegion> getPopular() {
+	public ResourceQuery<MoviesPopular, PaggedWithRegionQuery> getPopular() {
 		return new ResourceQuery<>("/movie/popular", apiKey, requestService, new GsonMapping<>(MoviesPopular.class));
 	}
 	
-	public ResourceQuery<MoviesTopRated, PaggedWithRegion> getTopRated() {
+	public ResourceQuery<MoviesTopRated, PaggedWithRegionQuery> getTopRated() {
 		return new ResourceQuery<>("/movie/top_rated", apiKey, requestService, new GsonMapping<>(MoviesTopRated.class));
 	}
 	
-	public ResourceQuery<MoviesUpcoming, PaggedWithRegion> getUpcoming() {
+	public ResourceQuery<MoviesUpcoming, PaggedWithRegionQuery> getUpcoming() {
 		return new ResourceQuery<>("/movie/upcoming", apiKey, requestService, new GsonMapping<>(MoviesUpcoming.class));
 	}
 	

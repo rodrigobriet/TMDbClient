@@ -18,7 +18,15 @@ public class MoviesAccountStates {
 	
 	private MoviesAccountStatesRate rate;
 	
-	private boolean rated;
+	private boolean isRated;
+
+	public MoviesAccountStates(int id, boolean favorite, boolean watchlist, MoviesAccountStatesRate rate, boolean rated) {
+		this.id = id;
+		this.favorite = favorite;
+		this.watchlist = watchlist;
+		this.rate = rate;
+		this.isRated = rated;
+	}
 
 	public int getId() {
 		return id;
@@ -37,7 +45,7 @@ public class MoviesAccountStates {
 	}
 
 	public boolean isRated() {
-		return rated;
+		return isRated;
 	}
 	
 }
