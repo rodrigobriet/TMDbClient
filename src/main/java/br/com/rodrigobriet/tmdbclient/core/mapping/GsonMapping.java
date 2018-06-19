@@ -5,12 +5,12 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import br.com.rodrigobriet.tmdbclient.core.models.StatusMessage;
+import br.com.rodrigobriet.tmdbclient.core.models.global.AccountStates;
 import br.com.rodrigobriet.tmdbclient.core.models.global.PersonResultItem;
 import br.com.rodrigobriet.tmdbclient.core.models.global.deserializer.PersonResultItemDeserializer;
 import br.com.rodrigobriet.tmdbclient.resources.find.deserializer.FindByIdDeserializer;
 import br.com.rodrigobriet.tmdbclient.resources.find.models.FindById;
 import br.com.rodrigobriet.tmdbclient.resources.movies.deserializer.MoviesAccountStatesDeserializer;
-import br.com.rodrigobriet.tmdbclient.resources.movies.models.MoviesAccountStates;
 import br.com.rodrigobriet.tmdbclient.resources.people.deserializer.PeopleCombinedCreditsDeserializer;
 import br.com.rodrigobriet.tmdbclient.resources.people.deserializer.PeopleTaggedImagesResultItemDeserializer;
 import br.com.rodrigobriet.tmdbclient.resources.people.models.PeopleCombinedCredits;
@@ -26,7 +26,7 @@ public class GsonMapping<T> extends AbstractMapping<T> {
 			.registerTypeAdapter(PersonResultItem.class, new PersonResultItemDeserializer())
 			.registerTypeAdapter(PeopleTaggedImagesResultItem.class, new PeopleTaggedImagesResultItemDeserializer())
 			.registerTypeAdapter(PeopleCombinedCredits.class, new PeopleCombinedCreditsDeserializer())
-			.registerTypeAdapter(MoviesAccountStates.class, new MoviesAccountStatesDeserializer())
+			.registerTypeAdapter(AccountStates.class, new MoviesAccountStatesDeserializer())
 			.create();
 	private Type type;
 	

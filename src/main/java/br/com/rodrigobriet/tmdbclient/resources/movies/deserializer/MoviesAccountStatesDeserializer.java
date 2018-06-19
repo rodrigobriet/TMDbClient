@@ -8,26 +8,26 @@ import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParseException;
 
-import br.com.rodrigobriet.tmdbclient.resources.movies.models.MoviesAccountStates;
-import br.com.rodrigobriet.tmdbclient.resources.movies.models.submodels.MoviesAccountStatesRate;
+import br.com.rodrigobriet.tmdbclient.core.models.global.AccountStates;
+import br.com.rodrigobriet.tmdbclient.core.models.global.AccountStatesRate;
 
-public class MoviesAccountStatesDeserializer implements JsonDeserializer<MoviesAccountStates> {
+public class MoviesAccountStatesDeserializer implements JsonDeserializer<AccountStates> {
 
 	@Override
-	public MoviesAccountStates deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
-		MoviesAccountStates m = new Gson().fromJson(json, MoviesAccountStates.class);
+	public AccountStates deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+		AccountStates m = new Gson().fromJson(json, AccountStates.class);
 		
 		String rated = json.getAsJsonObject().get("rated").toString();
 		boolean isRated = false;
-		MoviesAccountStatesRate rate = null;
+		AccountStatesRate rate = null;
 		
 		if(!rated.matches("false")) {
 			isRated = true;
-			rate = new Gson().fromJson(json.getAsJsonObject().get("rated"), MoviesAccountStatesRate.class);
+			rate = new Gson().fromJson(json.getAsJsonObject().get("rated"), AccountStatesRate.class);
 		}
 		
 		
-		return new MoviesAccountStates(m.getId(), m.isFavorite(), m.isWatchlist(), rate, isRated);
+		return new AccountStates(m.getId(), m.isFavorite(), m.isWatchlist(), rate, isRated);
 	}
 
 }

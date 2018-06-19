@@ -4,11 +4,20 @@ import java.util.List;
 
 import com.google.gson.annotations.SerializedName;
 
+import br.com.rodrigobriet.tmdbclient.core.models.global.AccountStates;
+import br.com.rodrigobriet.tmdbclient.core.models.global.AlternativeTitles;
+import br.com.rodrigobriet.tmdbclient.core.models.global.Credits;
+import br.com.rodrigobriet.tmdbclient.core.models.global.DetailsGenresItem;
+import br.com.rodrigobriet.tmdbclient.core.models.global.DetailsProductionCompaniesItem;
+import br.com.rodrigobriet.tmdbclient.core.models.global.Images;
+import br.com.rodrigobriet.tmdbclient.core.models.global.Keywords;
+import br.com.rodrigobriet.tmdbclient.core.models.global.Reviews;
+import br.com.rodrigobriet.tmdbclient.core.models.global.Translations;
+import br.com.rodrigobriet.tmdbclient.core.models.global.Videos;
 import br.com.rodrigobriet.tmdbclient.resources.movies.models.submodels.MoviesDetailsBelongsToCollection;
-import br.com.rodrigobriet.tmdbclient.resources.movies.models.submodels.MoviesDetailsGenres;
-import br.com.rodrigobriet.tmdbclient.resources.movies.models.submodels.MoviesDetailsProductionCompanies;
 import br.com.rodrigobriet.tmdbclient.resources.movies.models.submodels.MoviesDetailsProductionCountries;
 import br.com.rodrigobriet.tmdbclient.resources.movies.models.submodels.MoviesDetailsSpokenLanguages;
+import br.com.rodrigobriet.tmdbclient.resources.movies.models.submodels.MoviesTranslationsItemData;
 
 public class MoviesDetails {
 
@@ -25,7 +34,7 @@ public class MoviesDetails {
 	private int budget;
 	
 	@SerializedName("genres")
-	private List<MoviesDetailsGenres> genres;
+	private List<DetailsGenresItem> genres;
 	
 	@SerializedName("homepage")
 	private String homepage;
@@ -52,7 +61,7 @@ public class MoviesDetails {
 	private String posterPath;
 	
 	@SerializedName("production_companies")
-	private List<MoviesDetailsProductionCompanies> procutionCompanies;
+	private List<DetailsProductionCompaniesItem> procutionCompanies;
 	
 	@SerializedName("production_countries")
 	private List<MoviesDetailsProductionCountries> productionCountries;
@@ -88,31 +97,31 @@ public class MoviesDetails {
 	private int voteCount;
 	
 	@SerializedName("account_states")
-	private MoviesAccountStates accountStates;
+	private AccountStates accountStates;
 	
 	@SerializedName("alternative_titles")
-	private MoviesAlternativeTitles alternativeTitles;
+	private AlternativeTitles alternativeTitles;
 	
 	@SerializedName("credits")
-	private MoviesCredits credits;
+	private Credits credits;
 	
 	@SerializedName("external_ids")
 	private MoviesExternalIds externalIds;
 	
 	@SerializedName("images")
-	private MoviesImages images;
+	private Images images;
 	
 	@SerializedName("keywords")
-	private MoviesKeywords keywords;
+	private Keywords keywords;
 	
 	@SerializedName("release_dates")
 	private MoviesReleaseDates releaseDates;
 	
 	@SerializedName("videos")
-	private MoviesVideos videos;
+	private Videos videos;
 	
 	@SerializedName("translations")
-	private MoviesTranslations translations;
+	private Translations<MoviesTranslationsItemData> translations;
 	
 	@SerializedName("recommendations")
 	private MoviesRecommendations recommendations;
@@ -121,7 +130,7 @@ public class MoviesDetails {
 	private MoviesSimilar similar;
 	
 	@SerializedName("reviews")
-	private MoviesReviews reviews;
+	private Reviews reviews;
 	
 	@SerializedName("lists")
 	private MoviesLists lists;
@@ -142,7 +151,7 @@ public class MoviesDetails {
 		return budget;
 	}
 
-	public List<MoviesDetailsGenres> getGenres() {
+	public List<DetailsGenresItem> getGenres() {
 		return genres;
 	}
 
@@ -178,7 +187,7 @@ public class MoviesDetails {
 		return posterPath;
 	}
 
-	public List<MoviesDetailsProductionCompanies> getProcutionCompanies() {
+	public List<DetailsProductionCompaniesItem> getProcutionCompanies() {
 		return procutionCompanies;
 	}
 
@@ -226,15 +235,15 @@ public class MoviesDetails {
 		return voteCount;
 	}
 
-	public MoviesAccountStates getAccountStates() {
+	public AccountStates getAccountStates() {
 		return accountStates;
 	}
 
-	public MoviesAlternativeTitles getAlternativeTitles() {
+	public AlternativeTitles getAlternativeTitles() {
 		return alternativeTitles;
 	}
 
-	public MoviesCredits getCredits() {
+	public Credits getCredits() {
 		return credits;
 	}
 
@@ -242,11 +251,11 @@ public class MoviesDetails {
 		return externalIds;
 	}
 
-	public MoviesImages getImages() {
+	public Images getImages() {
 		return images;
 	}
 
-	public MoviesKeywords getKeywords() {
+	public Keywords getKeywords() {
 		return keywords;
 	}
 
@@ -254,11 +263,11 @@ public class MoviesDetails {
 		return releaseDates;
 	}
 
-	public MoviesVideos getVideos() {
+	public Videos getVideos() {
 		return videos;
 	}
 
-	public MoviesTranslations getTranslations() {
+	public Translations<MoviesTranslationsItemData> getTranslations() {
 		return translations;
 	}
 
@@ -270,7 +279,7 @@ public class MoviesDetails {
 		return similar;
 	}
 
-	public MoviesReviews getReviews() {
+	public Reviews getReviews() {
 		return reviews;
 	}
 

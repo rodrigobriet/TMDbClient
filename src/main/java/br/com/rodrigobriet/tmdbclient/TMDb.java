@@ -22,6 +22,7 @@ import br.com.rodrigobriet.tmdbclient.resources.networks.Networks;
 import br.com.rodrigobriet.tmdbclient.resources.people.People;
 import br.com.rodrigobriet.tmdbclient.resources.reviews.Reviews;
 import br.com.rodrigobriet.tmdbclient.resources.search.Search;
+import br.com.rodrigobriet.tmdbclient.resources.tv.Tv;
 import okhttp3.OkHttpClient;
 
 public class TMDb {
@@ -114,6 +115,10 @@ public class TMDb {
 	
 	public Search getSearch() {
 		return new Search(apiKey, requestService);
+	}
+	
+	public Tv getTv() {
+		return new Tv(apiKey, requestService);
 	}
 	
 }

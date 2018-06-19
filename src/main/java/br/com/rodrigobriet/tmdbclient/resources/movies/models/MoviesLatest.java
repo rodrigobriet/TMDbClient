@@ -4,9 +4,9 @@ import java.util.List;
 
 import com.google.gson.annotations.SerializedName;
 
+import br.com.rodrigobriet.tmdbclient.core.models.global.DetailsGenresItem;
+import br.com.rodrigobriet.tmdbclient.core.models.global.DetailsProductionCompaniesItem;
 import br.com.rodrigobriet.tmdbclient.resources.movies.models.submodels.MoviesDetailsBelongsToCollection;
-import br.com.rodrigobriet.tmdbclient.resources.movies.models.submodels.MoviesDetailsGenres;
-import br.com.rodrigobriet.tmdbclient.resources.movies.models.submodels.MoviesDetailsProductionCompanies;
 import br.com.rodrigobriet.tmdbclient.resources.movies.models.submodels.MoviesDetailsProductionCountries;
 import br.com.rodrigobriet.tmdbclient.resources.movies.models.submodels.MoviesDetailsSpokenLanguages;
 
@@ -25,7 +25,7 @@ public class MoviesLatest {
 	private int budget;
 	
 	@SerializedName("genres")
-	private List<MoviesDetailsGenres> genres;
+	private List<DetailsGenresItem> genres;
 	
 	@SerializedName("homepage")
 	private String homepage;
@@ -52,7 +52,7 @@ public class MoviesLatest {
 	private String posterPath;
 	
 	@SerializedName("production_companies")
-	private List<MoviesDetailsProductionCompanies> procutionCompanies;
+	private List<DetailsProductionCompaniesItem> procutionCompanies;
 	
 	@SerializedName("production_countries")
 	private List<MoviesDetailsProductionCountries> productionCountries;
@@ -103,7 +103,7 @@ public class MoviesLatest {
 		return budget;
 	}
 
-	public List<MoviesDetailsGenres> getGenres() {
+	public List<DetailsGenresItem> getGenres() {
 		return genres;
 	}
 
@@ -139,7 +139,7 @@ public class MoviesLatest {
 		return posterPath;
 	}
 
-	public List<MoviesDetailsProductionCompanies> getProcutionCompanies() {
+	public List<DetailsProductionCompaniesItem> getProcutionCompanies() {
 		return procutionCompanies;
 	}
 
