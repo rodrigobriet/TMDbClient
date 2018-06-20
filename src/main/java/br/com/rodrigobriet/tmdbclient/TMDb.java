@@ -23,6 +23,8 @@ import br.com.rodrigobriet.tmdbclient.resources.people.People;
 import br.com.rodrigobriet.tmdbclient.resources.reviews.Reviews;
 import br.com.rodrigobriet.tmdbclient.resources.search.Search;
 import br.com.rodrigobriet.tmdbclient.resources.tv.Tv;
+import br.com.rodrigobriet.tmdbclient.resources.tvepisodes.TvEpisodes;
+import br.com.rodrigobriet.tmdbclient.resources.tvseasons.TvSeasons;
 import okhttp3.OkHttpClient;
 
 public class TMDb {
@@ -119,6 +121,14 @@ public class TMDb {
 	
 	public Tv getTv() {
 		return new Tv(apiKey, requestService);
+	}
+	
+	public TvSeasons getTvSeasons() {
+		return new TvSeasons(apiKey, requestService);
+	}
+	
+	public TvEpisodes getTvEpisodes() {
+		return new TvEpisodes(apiKey, requestService);
 	}
 	
 }

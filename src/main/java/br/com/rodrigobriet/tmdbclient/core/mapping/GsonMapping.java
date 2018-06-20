@@ -17,6 +17,9 @@ import br.com.rodrigobriet.tmdbclient.resources.people.models.PeopleCombinedCred
 import br.com.rodrigobriet.tmdbclient.resources.people.models.submodels.PeopleTaggedImagesResultItem;
 import br.com.rodrigobriet.tmdbclient.resources.search.deserializer.SearchMultiDeserializer;
 import br.com.rodrigobriet.tmdbclient.resources.search.models.SearchMulti;
+import br.com.rodrigobriet.tmdbclient.resources.tvepisodes.deserializer.TvEpisodesAccountStatesDeserializer;
+import br.com.rodrigobriet.tmdbclient.resources.tvepisodes.models.TvEpisodesAccountStates;
+import br.com.rodrigobriet.tmdbclient.resources.tvseasons.deserializer.TvSeasonsAccountStatesResultItemDeserializer;
 
 public class GsonMapping<T> extends AbstractMapping<T> {
 
@@ -27,6 +30,8 @@ public class GsonMapping<T> extends AbstractMapping<T> {
 			.registerTypeAdapter(PeopleTaggedImagesResultItem.class, new PeopleTaggedImagesResultItemDeserializer())
 			.registerTypeAdapter(PeopleCombinedCredits.class, new PeopleCombinedCreditsDeserializer())
 			.registerTypeAdapter(AccountStates.class, new MoviesAccountStatesDeserializer())
+			.registerTypeAdapter(TvEpisodesAccountStates.class, new TvEpisodesAccountStatesDeserializer())
+			.registerTypeAdapter(TvSeasonsAccountStatesResultItemDeserializer.class, new TvSeasonsAccountStatesResultItemDeserializer())
 			.create();
 	private Type type;
 	
