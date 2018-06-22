@@ -12,9 +12,9 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 
-import br.com.rodrigobriet.tmdbclient.core.models.global.MovieResultItem;
-import br.com.rodrigobriet.tmdbclient.core.models.global.PersonResultItem;
-import br.com.rodrigobriet.tmdbclient.core.models.global.TvResultItem;
+import br.com.rodrigobriet.tmdbclient.core.models.MovieResultItem;
+import br.com.rodrigobriet.tmdbclient.core.models.PersonResultItem;
+import br.com.rodrigobriet.tmdbclient.core.models.TvResultItem;
 import br.com.rodrigobriet.tmdbclient.resources.find.models.FindById;
 
 public class FindByIdDeserializer implements JsonDeserializer<FindById> {

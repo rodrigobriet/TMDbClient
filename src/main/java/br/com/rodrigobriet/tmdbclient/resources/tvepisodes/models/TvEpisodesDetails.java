@@ -4,10 +4,10 @@ import java.util.List;
 
 import com.google.gson.annotations.SerializedName;
 
-import br.com.rodrigobriet.tmdbclient.core.models.global.CreditsCrew;
-import br.com.rodrigobriet.tmdbclient.core.models.global.GuestStars;
-import br.com.rodrigobriet.tmdbclient.core.models.global.Translations;
-import br.com.rodrigobriet.tmdbclient.core.models.global.Videos;
+import br.com.rodrigobriet.tmdbclient.core.models.CreditsCrew;
+import br.com.rodrigobriet.tmdbclient.core.models.GuestStars;
+import br.com.rodrigobriet.tmdbclient.core.models.Translations;
+import br.com.rodrigobriet.tmdbclient.core.models.Videos;
 import br.com.rodrigobriet.tmdbclient.resources.tvepisodes.models.submodels.TvEpisodesTranslationsItemData;
 
 public class TvEpisodesDetails {

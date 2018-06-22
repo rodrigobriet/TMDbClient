@@ -1,8 +1,8 @@
 package br.com.rodrigobriet.tmdbclient.resources.discover.query;
 
-import br.com.rodrigobriet.tmdbclient.core.resources.query.QueryField;
+import br.com.rodrigobriet.tmdbclient.core.resources.queries.AbstractQueryField;
 
-public class MovieDiscoverQuery extends QueryField {
+public class MovieDiscoverQuery extends AbstractQueryField {
 
 	public static final MovieDiscoverQuery LANGUAGE = new MovieDiscoverQuery("language");
 	public static final MovieDiscoverQuery REGION = new MovieDiscoverQuery("region");

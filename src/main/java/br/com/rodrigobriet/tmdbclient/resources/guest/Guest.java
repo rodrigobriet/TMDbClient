@@ -1,29 +1,41 @@
 package br.com.rodrigobriet.tmdbclient.resources.guest;
 
-import br.com.rodrigobriet.tmdbclient.core.mapping.GsonMapping;
+import br.com.rodrigobriet.tmdbclient.core.mappings.interfaces.MappingService;
 import br.com.rodrigobriet.tmdbclient.core.requests.interfaces.RequestService;
 import br.com.rodrigobriet.tmdbclient.core.resources.ResourceQuery;
-import br.com.rodrigobriet.tmdbclient.core.resources.ResourcesConf;
-import br.com.rodrigobriet.tmdbclient.core.resources.query.SortedGuestQuery;
+import br.com.rodrigobriet.tmdbclient.core.resources.ResourcesHolder;
+import br.com.rodrigobriet.tmdbclient.core.resources.queries.SortedGuestQuery;
 import br.com.rodrigobriet.tmdbclient.resources.guest.models.GuestRatedMovies;
 import br.com.rodrigobriet.tmdbclient.resources.guest.models.GuestRatedTv;
 import br.com.rodrigobriet.tmdbclient.resources.guest.models.GuestRatedTvEpisodes;
 
-public class Guest extends ResourcesConf {
+public class Guest extends ResourcesHolder {
 
-	public Guest(String apiKey, RequestService requestService) {
-		super(apiKey, requestService);
+	public Guest(String apiKey, RequestService requestService, MappingService mappingService) {
+		super(apiKey, requestService, mappingService);
 	}
 
 	public ResourceQuery<GuestRatedMovies, SortedGuestQuery> getRatedMovies(String guestSessionId) {
-		return new ResourceQuery<>("/guest_session/{guest_session_id}/rated/movies", apiKey, requestService, new GsonMapping<>(GuestRatedMovies.class), guestSessionId);
+		return new ResourceQuery.Builder<GuestRatedMovies, SortedGuestQuery>(requestService, mappingService, apiKey)
+				.setPath("/guest_session/{guest_session_id}/rated/movies")
+				.setPathValues(guestSessionId)
+				.setModelClass(GuestRatedMovies.class)
+				.build();
 	}
 	
 	public ResourceQuery<GuestRatedTv, SortedGuestQuery> getRatedTv (String guestSessionId) {
-		return new ResourceQuery<>("/guest_session/{guest_session_id}/rated/tv", apiKey, requestService, new GsonMapping<>(GuestRatedTv.class), guestSessionId);
+		return new ResourceQuery.Builder<GuestRatedTv, SortedGuestQuery>(requestService, mappingService, apiKey)
+				.setPath("/guest_session/{guest_session_id}/rated/tv")
+				.setPathValues(guestSessionId)
+				.setModelClass(GuestRatedTv.class)
+				.build();
 	}
 	
 	public ResourceQuery<GuestRatedTvEpisodes, SortedGuestQuery> getRatedTvEpisodes(String guestSessionId) {
-		return new ResourceQuery<>("/guest_session/{guest_session_id}/rated/tv/episodes", apiKey, requestService, new GsonMapping<>(GuestRatedTvEpisodes.class), guestSessionId);
+		return new ResourceQuery.Builder<GuestRatedTvEpisodes, SortedGuestQuery>(requestService, mappingService, apiKey)
+				.setPath("/guest_session/{guest_session_id}/rated/tv/episodes")
+				.setPathValues(guestSessionId)
+				.setModelClass(GuestRatedTvEpisodes.class)
+				.build();
 	}
 }

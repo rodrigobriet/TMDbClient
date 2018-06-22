@@ -8,8 +8,8 @@ import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParseException;
 
-import br.com.rodrigobriet.tmdbclient.core.models.global.AccountStates;
-import br.com.rodrigobriet.tmdbclient.core.models.global.AccountStatesRate;
+import br.com.rodrigobriet.tmdbclient.core.models.AccountStates;
+import br.com.rodrigobriet.tmdbclient.core.models.AccountStatesRate;
 
 public class MoviesAccountStatesDeserializer implements JsonDeserializer<AccountStates> {
 

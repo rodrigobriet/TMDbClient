@@ -1,8 +1,8 @@
 package br.com.rodrigobriet.tmdbclient.resources.discover.query;
 
-import br.com.rodrigobriet.tmdbclient.core.resources.query.QueryField;
+import br.com.rodrigobriet.tmdbclient.core.resources.queries.AbstractQueryField;
 
-public class TvDiscoverQuery extends QueryField {
+public class TvDiscoverQuery extends AbstractQueryField {
 
 	public static final TvDiscoverQuery LANGUAGE = new TvDiscoverQuery("language");
 	public static final TvDiscoverQuery SORT_BY = new TvDiscoverQuery("sort_by");

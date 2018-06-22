@@ -4,8 +4,8 @@ import java.util.List;
 
 import com.google.gson.annotations.SerializedName;
 
-import br.com.rodrigobriet.tmdbclient.core.models.global.CreditsCrew;
-import br.com.rodrigobriet.tmdbclient.core.models.global.GuestStars;
+import br.com.rodrigobriet.tmdbclient.core.models.CreditsCrew;
+import br.com.rodrigobriet.tmdbclient.core.models.GuestStars;
 
 public class TvEpisodesCredits {
 

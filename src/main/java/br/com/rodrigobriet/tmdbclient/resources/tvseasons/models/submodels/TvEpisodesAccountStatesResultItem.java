@@ -2,7 +2,7 @@ package br.com.rodrigobriet.tmdbclient.resources.tvseasons.models.submodels;
 
 import com.google.gson.annotations.SerializedName;
 
-import br.com.rodrigobriet.tmdbclient.core.models.global.requestbody.Rate;
+import br.com.rodrigobriet.tmdbclient.core.models.requestbody.Rate;
 
 public class TvEpisodesAccountStatesResultItem {
 

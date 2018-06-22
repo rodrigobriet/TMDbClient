@@ -4,9 +4,9 @@ import java.util.List;
 
 import com.google.gson.annotations.SerializedName;
 
-import br.com.rodrigobriet.tmdbclient.core.models.global.Credits;
-import br.com.rodrigobriet.tmdbclient.core.models.global.Images;
-import br.com.rodrigobriet.tmdbclient.core.models.global.Videos;
+import br.com.rodrigobriet.tmdbclient.core.models.Credits;
+import br.com.rodrigobriet.tmdbclient.core.models.Images;
+import br.com.rodrigobriet.tmdbclient.core.models.Videos;
 import br.com.rodrigobriet.tmdbclient.resources.tv.models.TvExternalIds;
 import br.com.rodrigobriet.tmdbclient.resources.tvepisodes.models.TvEpisodesDetails;
 

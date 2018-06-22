@@ -8,7 +8,7 @@ import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParseException;
 
-import br.com.rodrigobriet.tmdbclient.core.models.global.requestbody.Rate;
+import br.com.rodrigobriet.tmdbclient.core.models.requestbody.Rate;
 import br.com.rodrigobriet.tmdbclient.resources.tvepisodes.models.TvEpisodesAccountStates;
 
 public class TvEpisodesAccountStatesDeserializer implements JsonDeserializer<TvEpisodesAccountStates> {

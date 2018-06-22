@@ -1,6 +1,6 @@
 package br.com.rodrigobriet.tmdbclient.resources.discover;
 
-import br.com.rodrigobriet.tmdbclient.core.mapping.GsonMapping;
+import br.com.rodrigobriet.tmdbclient.core.mappings.interfaces.MappingService;
 import br.com.rodrigobriet.tmdbclient.core.requests.interfaces.RequestCallback;
 import br.com.rodrigobriet.tmdbclient.core.requests.interfaces.RequestService;
 import br.com.rodrigobriet.tmdbclient.core.resources.ResourceQuery;
@@ -11,8 +11,11 @@ public class MovieDiscover {
 
 	private ResourceQuery<MovieDiscoverResult, MovieDiscoverQuery> resource;
 	
-	public MovieDiscover(String apiKey, RequestService requestService) {
-		resource = new ResourceQuery<>("/discover/movie", apiKey, requestService, new GsonMapping<>(MovieDiscoverResult.class));
+	public MovieDiscover(String apiKey, RequestService requestService, MappingService mappingService) {
+		resource = new ResourceQuery.Builder<MovieDiscoverResult, MovieDiscoverQuery>(requestService, mappingService, apiKey)
+				.setPath("/discover/movie")
+				.setModelClass(MovieDiscoverResult.class)
+				.build();
 	}
 	
 	public void request(RequestCallback<MovieDiscoverResult> callback) {

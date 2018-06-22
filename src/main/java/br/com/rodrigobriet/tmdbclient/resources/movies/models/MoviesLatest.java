@@ -4,8 +4,8 @@ import java.util.List;
 
 import com.google.gson.annotations.SerializedName;
 
-import br.com.rodrigobriet.tmdbclient.core.models.global.DetailsGenresItem;
-import br.com.rodrigobriet.tmdbclient.core.models.global.DetailsProductionCompaniesItem;
+import br.com.rodrigobriet.tmdbclient.core.models.DetailsGenresItem;
+import br.com.rodrigobriet.tmdbclient.core.models.DetailsProductionCompaniesItem;
 import br.com.rodrigobriet.tmdbclient.resources.movies.models.submodels.MoviesDetailsBelongsToCollection;
 import br.com.rodrigobriet.tmdbclient.resources.movies.models.submodels.MoviesDetailsProductionCountries;
 import br.com.rodrigobriet.tmdbclient.resources.movies.models.submodels.MoviesDetailsSpokenLanguages;

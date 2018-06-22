@@ -8,8 +8,8 @@ import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParseException;
 
-import br.com.rodrigobriet.tmdbclient.core.models.global.MovieResultItem;
-import br.com.rodrigobriet.tmdbclient.core.models.global.TvResultItem;
+import br.com.rodrigobriet.tmdbclient.core.models.MovieResultItem;
+import br.com.rodrigobriet.tmdbclient.core.models.TvResultItem;
 import br.com.rodrigobriet.tmdbclient.resources.people.models.submodels.PeopleTaggedImagesResultItem;
 
 public class PeopleTaggedImagesResultItemDeserializer implements JsonDeserializer<PeopleTaggedImagesResultItem> {

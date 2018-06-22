@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.google.gson.annotations.SerializedName;
 
-import br.com.rodrigobriet.tmdbclient.core.models.global.ImagesItem;
+import br.com.rodrigobriet.tmdbclient.core.models.ImagesItem;
 
 public class TvSeasonsImages {
 

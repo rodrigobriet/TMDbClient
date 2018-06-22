@@ -4,10 +4,10 @@ import java.util.List;
 
 import com.google.gson.annotations.SerializedName;
 
-import br.com.rodrigobriet.tmdbclient.core.models.global.MovieResultItem;
-import br.com.rodrigobriet.tmdbclient.core.models.global.PersonResultItem;
-import br.com.rodrigobriet.tmdbclient.core.models.global.TvResultItem;
-import br.com.rodrigobriet.tmdbclient.core.models.global.TvSeasonResultItem;
+import br.com.rodrigobriet.tmdbclient.core.models.MovieResultItem;
+import br.com.rodrigobriet.tmdbclient.core.models.PersonResultItem;
+import br.com.rodrigobriet.tmdbclient.core.models.TvResultItem;
+import br.com.rodrigobriet.tmdbclient.core.models.TvSeasonResultItem;
 import br.com.rodrigobriet.tmdbclient.resources.find.models.submodels.FindTvEpisodeResultItem;
 
 public class FindById {

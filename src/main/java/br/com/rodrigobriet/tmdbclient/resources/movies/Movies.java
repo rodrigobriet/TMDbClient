@@ -4,31 +4,31 @@ import java.lang.reflect.Type;
 
 import com.google.gson.reflect.TypeToken;
 
-import br.com.rodrigobriet.tmdbclient.core.mapping.GsonMapping;
-import br.com.rodrigobriet.tmdbclient.core.models.global.AccountStates;
-import br.com.rodrigobriet.tmdbclient.core.models.global.AlternativeTitles;
-import br.com.rodrigobriet.tmdbclient.core.models.global.Credits;
-import br.com.rodrigobriet.tmdbclient.core.models.global.Images;
-import br.com.rodrigobriet.tmdbclient.core.models.global.Keywords;
-import br.com.rodrigobriet.tmdbclient.core.models.global.Reviews;
-import br.com.rodrigobriet.tmdbclient.core.models.global.Translations;
-import br.com.rodrigobriet.tmdbclient.core.models.global.Videos;
-import br.com.rodrigobriet.tmdbclient.core.models.global.requestbody.Rate;
+import br.com.rodrigobriet.tmdbclient.core.mappings.interfaces.MappingService;
+import br.com.rodrigobriet.tmdbclient.core.models.AccountStates;
+import br.com.rodrigobriet.tmdbclient.core.models.AlternativeTitles;
+import br.com.rodrigobriet.tmdbclient.core.models.Credits;
+import br.com.rodrigobriet.tmdbclient.core.models.Images;
+import br.com.rodrigobriet.tmdbclient.core.models.Keywords;
+import br.com.rodrigobriet.tmdbclient.core.models.Reviews;
+import br.com.rodrigobriet.tmdbclient.core.models.StatusMessage;
+import br.com.rodrigobriet.tmdbclient.core.models.Translations;
+import br.com.rodrigobriet.tmdbclient.core.models.Videos;
+import br.com.rodrigobriet.tmdbclient.core.models.requestbody.Rate;
 import br.com.rodrigobriet.tmdbclient.core.requests.interfaces.RequestService;
 import br.com.rodrigobriet.tmdbclient.core.resources.Resource;
-import br.com.rodrigobriet.tmdbclient.core.resources.ResourceDelete;
-import br.com.rodrigobriet.tmdbclient.core.resources.ResourcePost;
+import br.com.rodrigobriet.tmdbclient.core.resources.ResourceAppend;
+import br.com.rodrigobriet.tmdbclient.core.resources.ResourceMethod;
 import br.com.rodrigobriet.tmdbclient.core.resources.ResourceQuery;
-import br.com.rodrigobriet.tmdbclient.core.resources.ResourceQueryAppend;
-import br.com.rodrigobriet.tmdbclient.core.resources.ResourcesConf;
-import br.com.rodrigobriet.tmdbclient.core.resources.query.AuthSessionWithGuestQuery;
-import br.com.rodrigobriet.tmdbclient.core.resources.query.CountryQuery;
-import br.com.rodrigobriet.tmdbclient.core.resources.query.ImageQuery;
-import br.com.rodrigobriet.tmdbclient.core.resources.query.LanguageQuery;
-import br.com.rodrigobriet.tmdbclient.core.resources.query.PaggedQuery;
-import br.com.rodrigobriet.tmdbclient.core.resources.query.PaggedWithRegionQuery;
+import br.com.rodrigobriet.tmdbclient.core.resources.ResourcesHolder;
+import br.com.rodrigobriet.tmdbclient.core.resources.queries.AuthSessionWithGuestQuery;
+import br.com.rodrigobriet.tmdbclient.core.resources.queries.CountryQuery;
+import br.com.rodrigobriet.tmdbclient.core.resources.queries.ImageQuery;
+import br.com.rodrigobriet.tmdbclient.core.resources.queries.LanguageQuery;
+import br.com.rodrigobriet.tmdbclient.core.resources.queries.MoviesDetailsQuery;
+import br.com.rodrigobriet.tmdbclient.core.resources.queries.PaggedQuery;
+import br.com.rodrigobriet.tmdbclient.core.resources.queries.PaggedWithRegionQuery;
 import br.com.rodrigobriet.tmdbclient.resources.movies.appends.MoviesAppend;
-import br.com.rodrigobriet.tmdbclient.resources.movies.appends.MoviesDetailsAppendQuery;
 import br.com.rodrigobriet.tmdbclient.resources.movies.models.MoviesDetails;
 import br.com.rodrigobriet.tmdbclient.resources.movies.models.MoviesExternalIds;
 import br.com.rodrigobriet.tmdbclient.resources.movies.models.MoviesLatest;
@@ -39,18 +39,21 @@ import br.com.rodrigobriet.tmdbclient.resources.movies.models.MoviesRecommendati
 import br.com.rodrigobriet.tmdbclient.resources.movies.models.MoviesReleaseDates;
 import br.com.rodrigobriet.tmdbclient.resources.movies.models.MoviesSimilar;
 import br.com.rodrigobriet.tmdbclient.resources.movies.models.MoviesTopRated;
-import br.com.rodrigobriet.tmdbclient.resources.movies.models.submodels.MoviesTranslationsItemData;
 import br.com.rodrigobriet.tmdbclient.resources.movies.models.MoviesUpcoming;
+import br.com.rodrigobriet.tmdbclient.resources.movies.models.submodels.MoviesTranslationsItemData;
 
-public class Movies extends ResourcesConf {
-
-	public Movies(String apiKey, RequestService requestService) {
-		super(apiKey, requestService);
+public class Movies extends ResourcesHolder {
+	
+	public Movies(String apiKey, RequestService requestService, MappingService mappingService) {
+		super(apiKey, requestService, mappingService);
 	}
 
-	public ResourceQueryAppend<MoviesDetails, LanguageQuery, MoviesAppend, MoviesDetailsAppendQuery> getDetails(int movieId, MoviesAppend ... appends) {
-		ResourceQueryAppend<MoviesDetails, LanguageQuery, MoviesAppend, MoviesDetailsAppendQuery> r =
-				new ResourceQueryAppend<>("/movie/{movie_id}", apiKey, requestService, new GsonMapping<>(MoviesDetails.class), movieId);
+	public ResourceAppend<MoviesDetails, MoviesDetailsQuery, MoviesAppend> getDetails(int movieId, MoviesAppend ... appends) {
+		ResourceAppend<MoviesDetails, MoviesDetailsQuery, MoviesAppend> r = new ResourceAppend.Builder<MoviesDetails, MoviesDetailsQuery, MoviesAppend>(requestService, mappingService, apiKey)
+				.setPath("/movie/{movie_id}")
+				.setPathValues(""+movieId)
+				.setModelClass(MoviesDetails.class)
+				.build();
 		
 		for(MoviesAppend m: appends) {
 			r.addAppend(m);
@@ -60,85 +63,163 @@ public class Movies extends ResourcesConf {
 	}
 	
 	public ResourceQuery<AccountStates, AuthSessionWithGuestQuery> getAccountStates(int movieId) {
-		return new ResourceQuery<>("/movie/{movie_id}/account_states", apiKey, requestService, new GsonMapping<>(AccountStates.class), movieId);
+		return new ResourceQuery.Builder<AccountStates, AuthSessionWithGuestQuery>(requestService, mappingService, apiKey)
+				.setPath("/movie/{movie_id}/account_states")
+				.setPathValues(""+movieId)
+				.setModelClass(AccountStates.class)
+				.build();
 	}
 	
 	public ResourceQuery<AlternativeTitles, CountryQuery> getAlternativeTitles(int movieId) {
-		return new ResourceQuery<>("/movie/{movie_id}/alternative_titles", apiKey, requestService, new GsonMapping<>(AlternativeTitles.class), movieId);
+		return new ResourceQuery.Builder<AlternativeTitles, CountryQuery>(requestService, mappingService, apiKey)
+				.setPath("/movie/{movie_id}/alternative_titles")
+				.setPathValues(""+movieId)
+				.setModelClass(AlternativeTitles.class)
+				.build();
 	}
 	
 	public Resource<Credits> getCredits(int movieId) {
-		return new Resource<>("/movie/{movie_id}/credits", apiKey, requestService, new GsonMapping<>(Credits.class), movieId);
+		return new Resource.Builder<Credits>(requestService, mappingService, apiKey)
+				.setPath("/movie/{movie_id}/credits")
+				.setPathValues(""+movieId)
+				.setModelClass(Credits.class)
+				.build();
 	}
 	
 	public Resource<MoviesExternalIds> getExternalIds(int movieId) {
-		return new Resource<>("/movie/{movie_id}/external_ids", apiKey, requestService, new GsonMapping<>(MoviesExternalIds.class), movieId);
+		return new Resource.Builder<MoviesExternalIds>(requestService, mappingService, apiKey)
+				.setPath("/movie/{movie_id}/external_ids")
+				.setPathValues(""+movieId)
+				.setModelClass(MoviesExternalIds.class)
+				.build();
 	}
 	
 	public ResourceQuery<Images, ImageQuery> getImages(int movieId) {
-		return new ResourceQuery<>("/movie/{movie_id}/images", apiKey, requestService, new GsonMapping<>(Images.class), movieId);
+		return new ResourceQuery.Builder<Images, ImageQuery>(requestService, mappingService, apiKey)
+				.setPath("/movie/{movie_id}/images")
+				.setPathValues(""+movieId)
+				.setModelClass(Images.class)
+				.build();
 	}
 	
 	public Resource<Keywords> getKeywords(int movieId) {
-		return new Resource<>("/movie/{movie_id}/keywords", apiKey, requestService, new GsonMapping<>(Keywords.class), movieId);
+		return new Resource.Builder<Keywords>(requestService, mappingService, apiKey)
+				.setPath("/movie/{movie_id}/keywords")
+				.setPathValues(""+movieId)
+				.setModelClass(Keywords.class)
+				.build();
 	}
 	
 	public Resource<MoviesReleaseDates> getReleaseDates(int movieId) {
-		return new Resource<>("/movie/{movie_id}/release_dates", apiKey, requestService, new GsonMapping<>(MoviesReleaseDates.class), movieId);
+		return new Resource.Builder<MoviesReleaseDates>(requestService, mappingService, apiKey)
+				.setPath("/movie/{movie_id}/release_dates")
+				.setPathValues(""+movieId)
+				.setModelClass(MoviesReleaseDates.class)
+				.build();
 	}
 	
-	public ResourceQuery<Videos, ImageQuery> getVideos(int movieId) {
-		return new ResourceQuery<>("/movie/{movie_id}/videos", apiKey, requestService, new GsonMapping<>(Videos.class), movieId);
+	public ResourceQuery<Videos, LanguageQuery> getVideos(int movieId) {
+		return new ResourceQuery.Builder<Videos, LanguageQuery>(requestService, mappingService, apiKey)
+				.setPath("/movie/{movie_id}/videos")
+				.setPathValues(""+movieId)
+				.setModelClass(Videos.class)
+				.build();
 	}
 	
 	public Resource<Translations<MoviesTranslationsItemData>> getTranslations(int movieId) {
 		Type type = TypeToken.getParameterized(Translations.class, MoviesTranslationsItemData.class).getType();
-		return new Resource<>("/movie/{movie_id}/translations", apiKey, requestService, new GsonMapping<>(type), movieId);
+		return new Resource.Builder<Translations<MoviesTranslationsItemData>>(requestService, mappingService, apiKey)
+				.setPath("/movie/{movie_id}/translations")
+				.setPathValues(""+movieId)
+				.setModelClass(type)
+				.build();
 	}
 	
 	public ResourceQuery<MoviesRecommendations, PaggedQuery> getRecommendations(int movieId) {
-		return new ResourceQuery<>("/movie/{movie_id}/recommendations", apiKey, requestService, new GsonMapping<>(MoviesRecommendations.class), movieId);
+		return new ResourceQuery.Builder<MoviesRecommendations, PaggedQuery>(requestService, mappingService, apiKey)
+				.setPath("/movie/{movie_id}/recommendations")
+				.setPathValues(""+movieId)
+				.setModelClass(Videos.class)
+				.build();
 	}
 	
 	public ResourceQuery<MoviesSimilar, PaggedQuery> getSimilar(int movieId) {
-		return new ResourceQuery<>("/movie/{movie_id}/similar", apiKey, requestService, new GsonMapping<>(MoviesSimilar.class), movieId);
+		return new ResourceQuery.Builder<MoviesSimilar, PaggedQuery>(requestService, mappingService, apiKey)
+				.setPath("/movie/{movie_id}/similar")
+				.setPathValues(""+movieId)
+				.setModelClass(MoviesSimilar.class)
+				.build();
 	}
 	
 	public ResourceQuery<Reviews, PaggedQuery> getReviews(int movieId) {
-		return new ResourceQuery<>("/movie/{movie_id}/reviews", apiKey, requestService, new GsonMapping<>(Reviews.class), movieId);
+		return new ResourceQuery.Builder<Reviews, PaggedQuery>(requestService, mappingService, apiKey)
+				.setPath("/movie/{movie_id}/reviews")
+				.setPathValues(""+movieId)
+				.setModelClass(Reviews.class)
+				.build();
 	}
 	
 	public ResourceQuery<MoviesLists, PaggedQuery> getLists(int movieId) {
-		return new ResourceQuery<>("/movie/{movie_id}/lists", apiKey, requestService, new GsonMapping<>(MoviesLists.class), movieId);
+		return new ResourceQuery.Builder<MoviesLists, PaggedQuery>(requestService, mappingService, apiKey)
+				.setPath("/movie/{movie_id}/lists")
+				.setPathValues(""+movieId)
+				.setModelClass(MoviesLists.class)
+				.build();
 	}
 	
 	public ResourceQuery<MoviesLatest, LanguageQuery> getLatest() {
-		return new ResourceQuery<>("/movie/latest", apiKey, requestService, new GsonMapping<>(MoviesLatest.class));
+		return new ResourceQuery.Builder<MoviesLatest, LanguageQuery>(requestService, mappingService, apiKey)
+				.setPath("/movie/latest")
+				.setModelClass(MoviesLatest.class)
+				.build();
 	}
 	
 	public ResourceQuery<MoviesNowPlaying, PaggedWithRegionQuery> getNowPlaying() {
-		return new ResourceQuery<>("/movie/now_playing", apiKey, requestService, new GsonMapping<>(MoviesNowPlaying.class));
+		return new ResourceQuery.Builder<MoviesNowPlaying, PaggedWithRegionQuery>(requestService, mappingService, apiKey)
+				.setPath("/movie/now_playing")
+				.setModelClass(MoviesNowPlaying.class)
+				.build();
 	}
 	
 	public ResourceQuery<MoviesPopular, PaggedWithRegionQuery> getPopular() {
-		return new ResourceQuery<>("/movie/popular", apiKey, requestService, new GsonMapping<>(MoviesPopular.class));
+		return new ResourceQuery.Builder<MoviesPopular, PaggedWithRegionQuery>(requestService, mappingService, apiKey)
+				.setPath("/movie/popular")
+				.setModelClass(MoviesPopular.class)
+				.build();
 	}
 	
 	public ResourceQuery<MoviesTopRated, PaggedWithRegionQuery> getTopRated() {
-		return new ResourceQuery<>("/movie/top_rated", apiKey, requestService, new GsonMapping<>(MoviesTopRated.class));
+		return new ResourceQuery.Builder<MoviesTopRated, PaggedWithRegionQuery>(requestService, mappingService, apiKey)
+				.setPath("/movie/top_rated")
+				.setModelClass(MoviesTopRated.class)
+				.build();
 	}
 	
 	public ResourceQuery<MoviesUpcoming, PaggedWithRegionQuery> getUpcoming() {
-		return new ResourceQuery<>("/movie/upcoming", apiKey, requestService, new GsonMapping<>(MoviesUpcoming.class));
+		return new ResourceQuery.Builder<MoviesUpcoming, PaggedWithRegionQuery>(requestService, mappingService, apiKey)
+				.setPath("/movie/upcoming")
+				.setModelClass(MoviesUpcoming.class)
+				.build();
 	}
 	
-	public ResourceDelete<AuthSessionWithGuestQuery> deleteRating(int movieId) {
-		return new ResourceDelete<>("/movie/{movie_id}/rating", apiKey, requestService, movieId);
-	}
-	
-	public ResourcePost<AuthSessionWithGuestQuery, Rate> rate(int movieId, float rate) {
+	public ResourceQuery<StatusMessage, AuthSessionWithGuestQuery> rate(int movieId, float rate) {
 		Rate body = new Rate(rate);
-		return new ResourcePost<AuthSessionWithGuestQuery, Rate>("/movie/{movie_id}/rating", apiKey, requestService, body, movieId);
+		return new ResourceQuery.Builder<StatusMessage, AuthSessionWithGuestQuery>(requestService, mappingService, apiKey)
+				.setPath("/movie/{movie_id}/rating")
+				.setPathValues(""+movieId)
+				.setModelClass(StatusMessage.class)
+				.setBodyContent(body)
+				.setResourceMethod(ResourceMethod.POST)
+				.build();
+	}
+	
+	public ResourceQuery<StatusMessage, AuthSessionWithGuestQuery> deleteRating(int movieId) {
+		return new ResourceQuery.Builder<StatusMessage, AuthSessionWithGuestQuery>(requestService, mappingService, apiKey)
+				.setPath("/movie/{movie_id}/rating")
+				.setPathValues(""+movieId)
+				.setModelClass(StatusMessage.class)
+				.setResourceMethod(ResourceMethod.DELETE)
+				.build();
 	}
 	
 }

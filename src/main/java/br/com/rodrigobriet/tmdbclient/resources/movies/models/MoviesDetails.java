@@ -4,16 +4,16 @@ import java.util.List;
 
 import com.google.gson.annotations.SerializedName;
 
-import br.com.rodrigobriet.tmdbclient.core.models.global.AccountStates;
-import br.com.rodrigobriet.tmdbclient.core.models.global.AlternativeTitles;
-import br.com.rodrigobriet.tmdbclient.core.models.global.Credits;
-import br.com.rodrigobriet.tmdbclient.core.models.global.DetailsGenresItem;
-import br.com.rodrigobriet.tmdbclient.core.models.global.DetailsProductionCompaniesItem;
-import br.com.rodrigobriet.tmdbclient.core.models.global.Images;
-import br.com.rodrigobriet.tmdbclient.core.models.global.Keywords;
-import br.com.rodrigobriet.tmdbclient.core.models.global.Reviews;
-import br.com.rodrigobriet.tmdbclient.core.models.global.Translations;
-import br.com.rodrigobriet.tmdbclient.core.models.global.Videos;
+import br.com.rodrigobriet.tmdbclient.core.models.AccountStates;
+import br.com.rodrigobriet.tmdbclient.core.models.AlternativeTitles;
+import br.com.rodrigobriet.tmdbclient.core.models.Credits;
+import br.com.rodrigobriet.tmdbclient.core.models.DetailsGenresItem;
+import br.com.rodrigobriet.tmdbclient.core.models.DetailsProductionCompaniesItem;
+import br.com.rodrigobriet.tmdbclient.core.models.Images;
+import br.com.rodrigobriet.tmdbclient.core.models.Keywords;
+import br.com.rodrigobriet.tmdbclient.core.models.Reviews;
+import br.com.rodrigobriet.tmdbclient.core.models.Translations;
+import br.com.rodrigobriet.tmdbclient.core.models.Videos;
 import br.com.rodrigobriet.tmdbclient.resources.movies.models.submodels.MoviesDetailsBelongsToCollection;
 import br.com.rodrigobriet.tmdbclient.resources.movies.models.submodels.MoviesDetailsProductionCountries;
 import br.com.rodrigobriet.tmdbclient.resources.movies.models.submodels.MoviesDetailsSpokenLanguages;

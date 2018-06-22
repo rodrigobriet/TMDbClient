@@ -2,8 +2,8 @@ package br.com.rodrigobriet.tmdbclient.resources.people.models.submodels;
 
 import com.google.gson.annotations.SerializedName;
 
-import br.com.rodrigobriet.tmdbclient.core.models.global.MovieResultItem;
-import br.com.rodrigobriet.tmdbclient.core.models.global.TvResultItem;
+import br.com.rodrigobriet.tmdbclient.core.models.MovieResultItem;
+import br.com.rodrigobriet.tmdbclient.core.models.TvResultItem;
 
 public class PeopleTaggedImagesResultItem {
 

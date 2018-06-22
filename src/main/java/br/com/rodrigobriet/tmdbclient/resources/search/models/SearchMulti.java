@@ -4,9 +4,9 @@ import java.util.List;
 
 import com.google.gson.annotations.SerializedName;
 
-import br.com.rodrigobriet.tmdbclient.core.models.global.MovieResultItem;
-import br.com.rodrigobriet.tmdbclient.core.models.global.PersonResultItem;
-import br.com.rodrigobriet.tmdbclient.core.models.global.TvResultItem;
+import br.com.rodrigobriet.tmdbclient.core.models.MovieResultItem;
+import br.com.rodrigobriet.tmdbclient.core.models.PersonResultItem;
+import br.com.rodrigobriet.tmdbclient.core.models.TvResultItem;
 
 public class SearchMulti {
 

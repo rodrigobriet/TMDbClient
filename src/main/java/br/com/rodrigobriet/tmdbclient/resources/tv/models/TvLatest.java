@@ -4,8 +4,8 @@ import java.util.List;
 
 import com.google.gson.annotations.SerializedName;
 
-import br.com.rodrigobriet.tmdbclient.core.models.global.DetailsGenresItem;
-import br.com.rodrigobriet.tmdbclient.core.models.global.DetailsProductionCompaniesItem;
+import br.com.rodrigobriet.tmdbclient.core.models.DetailsGenresItem;
+import br.com.rodrigobriet.tmdbclient.core.models.DetailsProductionCompaniesItem;
 import br.com.rodrigobriet.tmdbclient.resources.tv.models.submodels.TvDetailsCreatedByItem;
 import br.com.rodrigobriet.tmdbclient.resources.tv.models.submodels.TvDetailsNetworksItem;
 import br.com.rodrigobriet.tmdbclient.resources.tv.models.submodels.TvDetailsSeasonsItem;
