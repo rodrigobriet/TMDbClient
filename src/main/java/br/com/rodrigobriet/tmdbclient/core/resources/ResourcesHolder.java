@@ -3,7 +3,11 @@ package br.com.rodrigobriet.tmdbclient.core.resources;
 import br.com.rodrigobriet.tmdbclient.core.mappings.interfaces.MappingService;
 import br.com.rodrigobriet.tmdbclient.core.requests.interfaces.RequestService;
 
-public class ResourcesHolder {
+/**
+ * An abstract implementation for classes that hold resources.
+ * Each resource package has his own ResourcesBuilder to generate the resource for each endpoint.
+ */
+public abstract class ResourcesHolder {
 
 	protected String apiKey;
 	protected RequestService requestService;

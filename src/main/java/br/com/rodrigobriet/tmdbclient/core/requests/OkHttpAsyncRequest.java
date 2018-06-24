@@ -16,6 +16,9 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 import okio.BufferedSink;
 
+/**
+ * Implements the {@link RequestService} interface using the OkHttp3 library.
+ */
 public class OkHttpAsyncRequest implements RequestService {
 	
 	private String baseURL;

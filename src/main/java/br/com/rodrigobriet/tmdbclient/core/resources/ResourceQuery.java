@@ -8,6 +8,11 @@ import br.com.rodrigobriet.tmdbclient.core.mappings.interfaces.MappingService;
 import br.com.rodrigobriet.tmdbclient.core.requests.interfaces.RequestService;
 import br.com.rodrigobriet.tmdbclient.core.resources.queries.AbstractQueryField;
 
+/**
+ * Represents a resource that accept query string. Need to be created using the {@link ResourceQuery.Builder}.
+ * @param <ModelT> The type of the resource model.
+ * @param <AppendT> The resource append type.
+ */
 public class ResourceQuery<ModelT, QueryT extends AbstractQueryField> extends Resource<ModelT> {
 
 	protected HashMap<QueryT, String> queryString = new HashMap<>();

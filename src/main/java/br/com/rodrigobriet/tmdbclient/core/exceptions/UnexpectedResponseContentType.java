@@ -1,5 +1,8 @@
 package br.com.rodrigobriet.tmdbclient.core.exceptions;
 
+/**
+ * Throw when a request return a content-type not equal to "application/json;charset=utf-8"
+ */
 public class UnexpectedResponseContentType extends RuntimeException {
 
 	/**

@@ -13,20 +13,51 @@ import br.com.rodrigobriet.tmdbclient.core.requests.interfaces.RequestCallback;
 import br.com.rodrigobriet.tmdbclient.core.requests.interfaces.RequestMediator;
 import br.com.rodrigobriet.tmdbclient.core.requests.interfaces.RequestService;
 
+/**
+ * Represents a resource. Need to be created using the {@link Resource.Builder}.
+ * @param <ModelT> The type of the resource model.
+ */
 public class Resource<ModelT> {
 
+	/**
+	 * The request service used to perform the resource request.
+	 */
 	private RequestService requestService;
+	
+	/**
+	 * The mapping service used to map the returned request value to the ModelT class.
+	 */
 	private MappingService mappingService;
+	
+	/**
+	 * The API key used to request the resource.
+	 */
 	protected String apiKey;
 	
+	/**
+	 * The resource HTTP method.
+	 */
 	private ResourceMethod resourceMethod;
 	
+	/**
+	 * The resource path with variables.
+	 */
 	private String path;
+	
+	/**
+	 * The path variables values.
+	 */
 	private String[] pathValues;
 	
+	/**
+	 * The model class or type.
+	 */
 	private Class<ModelT> modelClass;
 	private Type modelType;
 	
+	/**
+	 * The body content when POST.
+	 */
 	private Object bodyContent;
 	
 	protected Resource(RequestService requestService, 
@@ -49,6 +80,10 @@ public class Resource<ModelT> {
 		this.bodyContent = bodyContent;
 	}
 
+	/**
+	 * Make the request to get the resource data.
+	 * @param callback A {@link RequestCallback} for this specified resource data.
+	 */
 	public void request(RequestCallback<ModelT> callback) {
 		RequestMediator requestMediator = new RequestMediator() {
 			
@@ -76,6 +111,11 @@ public class Resource<ModelT> {
 		request(callback, requestMediator);
 	}
 	
+	/**
+	 * Call the correct {@link RequestService} method for each {@link ResourceMethod}
+	 * @param callback
+	 * @param requestMediator
+	 */
 	protected void request(RequestCallback<?> callback, RequestMediator requestMediator) {
 		if(resourceMethod == ResourceMethod.GET) {
 			requestService.get(buildPath(), requestMediator);
@@ -86,14 +126,25 @@ public class Resource<ModelT> {
 		}
 	}
 	
+	/**
+	 * Build the resource path with query string.
+	 * @return A {@link String} with the resource path.
+	 */
 	protected String buildPath() {
 		return createParametizedURI() + buildQueryString();
 	}
 	
+	/**
+	 * Create the resource path replacing the variables.
+	 * @return The resource path with the variables replaced.
+	 */
 	private String createParametizedURI() {			
 		return buildURI(replaceParams(cleanEmpty(path.split("/"))));
 	}
 	
+	/**
+	 * Remove empty values from the path array.
+	 */
 	private List<String> cleanEmpty(String[] values) {
 		List<String> cleanValues = new ArrayList<>();
 		
@@ -105,6 +156,9 @@ public class Resource<ModelT> {
 		return cleanValues;
 	}
 	
+	/**
+	 * Replace the variables with the values;
+	 */
 	private List<String> replaceParams(List<String> values) {
 		int j = 0;
 		for(int i = 0; i < values.size(); i++) {
@@ -123,6 +177,10 @@ public class Resource<ModelT> {
 		return values;
 	}
 	
+	
+	/**
+	 * Rebuild the path from List to String.
+	 */
 	private String buildURI(List<String> uriS) {
 		StringBuilder sb = new StringBuilder();
 		
@@ -137,10 +195,17 @@ public class Resource<ModelT> {
 		return sb.toString();
 	}
 	
+	/**
+	 * Build the resource query string.
+	 */
 	protected String buildQueryString() {
 		return "?api_key=" + apiKey;
 	}
 	
+	/**
+	 * Create a Resource<ModelT> with the specified data.
+	 * @param <ModelT> The type of the resource model.
+	 */
 	public static class Builder<ModelT> extends ResourceBuilder<ModelT, Resource<ModelT>> {
 
 		public Builder(RequestService requestService, MappingService mappingService, String apiKey) {

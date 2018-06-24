@@ -1,5 +1,9 @@
 package br.com.rodrigobriet.tmdbclient.core.exceptions;
 
+
+/**
+ * Throw when a invalid value is given in some methods.
+ */
 public class InvalidParameterValue extends RuntimeException {
 
 	/**

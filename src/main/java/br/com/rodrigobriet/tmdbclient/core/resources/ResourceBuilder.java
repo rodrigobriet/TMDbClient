@@ -5,6 +5,11 @@ import java.lang.reflect.Type;
 import br.com.rodrigobriet.tmdbclient.core.mappings.interfaces.MappingService;
 import br.com.rodrigobriet.tmdbclient.core.requests.interfaces.RequestService;
 
+/**
+ * A abstract builder for each resource type.
+ * @param <ModelT>  The type of the resource model.
+ * @param <ResourceT> The resource type created by the builder.
+ */
 public abstract class ResourceBuilder<ModelT, ResourceT> {
 
 	protected RequestService requestService;

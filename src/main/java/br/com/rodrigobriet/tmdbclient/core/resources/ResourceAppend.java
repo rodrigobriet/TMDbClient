@@ -8,6 +8,12 @@ import br.com.rodrigobriet.tmdbclient.core.mappings.interfaces.MappingService;
 import br.com.rodrigobriet.tmdbclient.core.requests.interfaces.RequestService;
 import br.com.rodrigobriet.tmdbclient.core.resources.queries.AbstractQueryField;
 
+/**
+ * Represents a resource that accept query string and append_to_response. Need to be created using the {@link ResourceAppend.Builder}.
+ * @param <ModelT> The type of the resource model.
+ * @param <QueryT> The resource query type.
+ * @param <AppendT> The resource append type.
+ */
 public class ResourceAppend<ModelT, QueryT extends AbstractQueryField, AppendT extends Append> extends ResourceQuery<ModelT, QueryT> {
 
 	private List<AppendT> appendToResponse = new ArrayList<>();

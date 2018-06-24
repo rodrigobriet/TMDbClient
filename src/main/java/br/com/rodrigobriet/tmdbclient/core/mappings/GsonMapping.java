@@ -21,6 +21,10 @@ import br.com.rodrigobriet.tmdbclient.resources.tvepisodes.deserializer.TvEpisod
 import br.com.rodrigobriet.tmdbclient.resources.tvepisodes.models.TvEpisodesAccountStates;
 import br.com.rodrigobriet.tmdbclient.resources.tvseasons.deserializer.TvSeasonsAccountStatesResultItemDeserializer;
 
+/**
+ * Implements the {@link MappingService} interface using the Gson library.
+ * Some classes uses customs deserializers.
+ */
 public class GsonMapping implements MappingService {
 
 	private Gson gson = new GsonBuilder()
