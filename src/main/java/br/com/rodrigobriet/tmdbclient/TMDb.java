@@ -1,5 +1,7 @@
 package br.com.rodrigobriet.tmdbclient;
 
+import java.io.File;
+
 import br.com.rodrigobriet.tmdbclient.core.exceptions.InvalidParameterValue;
 import br.com.rodrigobriet.tmdbclient.core.mappings.GsonMapping;
 import br.com.rodrigobriet.tmdbclient.core.mappings.interfaces.MappingService;
@@ -27,6 +29,7 @@ import br.com.rodrigobriet.tmdbclient.resources.search.Search;
 import br.com.rodrigobriet.tmdbclient.resources.tv.Tv;
 import br.com.rodrigobriet.tmdbclient.resources.tvepisodes.TvEpisodes;
 import br.com.rodrigobriet.tmdbclient.resources.tvseasons.TvSeasons;
+import okhttp3.Cache;
 import okhttp3.OkHttpClient;
 
 public class TMDb {
@@ -37,22 +40,24 @@ public class TMDb {
 	private RequestService requestService;
 	private MappingService mappingService;
 	
-	public TMDb(String apiKey) {
+	public TMDb(String apiKey, File cacheDirectory, int cacheSize) {
 		if(apiKey == null || apiKey.equals(""))
 			throw new InvalidParameterValue("API Key can't be empty or null.");
 		
 		this.apiKey = apiKey;
 		
-		configureRequestService();
+		configureRequestService(cacheDirectory, cacheSize);
 		configureMappingService();
+	}
+	
+	private void configureRequestService(File cacheDirectory, int cacheSize) {
+		requestService = new OkHttpAsyncRequest(BASE_URL, new OkHttpClient.Builder()
+				.cache(new Cache(cacheDirectory, cacheSize))
+				.build());
 	}
 	
 	private void configureMappingService() {
 		mappingService = new GsonMapping();
-	}
-
-	private void configureRequestService() {
-		requestService = new OkHttpAsyncRequest(BASE_URL, new OkHttpClient());
 	}
 
 	public Authentication getAuthentication() {
