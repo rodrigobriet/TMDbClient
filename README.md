@@ -47,7 +47,7 @@ db.getMovies().getDetails(movieId).request(new RequestCallback<MoviesDetails>() 
   }
 });
 ```
-Each request need to receive a **[RequestCallback<?>](https://github.com/rodrigobriet/TMDbClient/blob/master/src/main/java/br/com/rodrigobriet/tmdbclient/core/requests/interfaces/RequestCallback.java)** implementation, where ? is the model type returned by te request.
+Each request need to receive a **[RequestCallback<?>](https://github.com/rodrigobriet/TMDbClient/blob/master/src/main/java/com/github/rodrigobriet/tmdbclient/core/requests/interfaces/RequestCallback.java)** implementation, where ? is the model type returned by te request.
 
 ## Setting query strings
 Some resources allow the use of a custom query string. To set this query you can use the ```setQuery()``` method. Each resource allow a diferent type of query.
