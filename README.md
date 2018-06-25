@@ -1,6 +1,20 @@
 # TMDb Client
 This library allow to request content from **[The Movie Database API](https://developers.themoviedb.org/3/getting-started/introduction)** using async methods.
 
+## Download
+To use the TMDbClient with _Gradle_:
+```gradle
+compile 'com.github.rodrigobriet:tmdbclient:1.0.0'
+```
+with _Maven_:
+```xml
+<dependency>
+    <groupId>com.github.rodrigobriet</groupId>
+    <artifactId>tmdbclient</artifactId>
+    <version>1.0.0</version>
+</dependency>
+```
+
 ## Usage
 To use the API you need to create a new instance of the TMDb class giving you _API key_, a _directory_ to be used as cache and the _cache size_ in bytes.
 ```java
